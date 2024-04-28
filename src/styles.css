@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    background-color: rgb(243, 241, 241);
+}
+
+.canva{
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.title{
+    text-align: center;
+}

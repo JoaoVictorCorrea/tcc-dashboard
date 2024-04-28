@@ -1,47 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
-import { TypesService } from 'src/app/models/types-service';
-import { TypesServiceService } from 'src/app/services/types-service.service';
+import { TypesViolenceSituations } from 'src/app/models/types-violence-situations';
+import { TypesViolenceSituationsService } from 'src/app/services/types-violence-situations.service';
 
 @Component({
-  selector: 'app-chart-types-service',
-  templateUrl: './chart-types-service.component.html',
-  styleUrls: ['./chart-types-service.component.css']
+  selector: 'app-chart-types-violence-situations',
+  templateUrl: './chart-types-violence-situations.component.html',
+  styleUrls: ['./chart-types-violence-situations.component.css']
 })
-export class ChartTypesServiceComponent implements OnInit {
+export class ChartTypesViolenceSituationsComponent implements OnInit {
 
   chart: any;
-  typesService: TypesService[] = [];
+  typesViolenceSituations: TypesViolenceSituations[] = [];
 
-  constructor(private typesServiceService: TypesServiceService) { }
+  constructor(private typesViolenceSituationsService: TypesViolenceSituationsService) { }
   
   ngOnInit(): void {
-    this.loadChartTypesService();
+    this.loadChartTypesViolenceSituations();
   }
 
-  loadChartTypesService() {
-    this.typesServiceService.getTypesService().subscribe({
+  loadChartTypesViolenceSituations() {
+    this.typesViolenceSituationsService.getTypesViolenceSituations().subscribe({
       next: data => {
-        this.typesService = data;
+        this.typesViolenceSituations = data;
         this.createChart();
        }
     });
   }
-  createChart() {
-    const labels = this.typesService.map(item => item.unidade.nome);
 
-    const qtdAtendimentoSocial = this.typesService.map(item => item.qtdAtendimentoSocial);
-    const qtdAtendimentoRecepcao = this.typesService.map(item => item.qtdAtendimentoRecepcao);
+  createChart() {
+    const labels = this.typesViolenceSituations.map(item => item.unidade.nome);
+
+    const qtdAtoInfracional = this.typesViolenceSituations.map(item => item.qtdAtoInfracional);
+    const qtdFisica = this.typesViolenceSituations.map(item => item.qtdFisica);
   
-    this.chart = new Chart("ChartTypesService", {
+    this.chart = new Chart("ChartTypesViolenceSituations", {
       type: 'bar', //this denotes tha type of chart
 
       data: {// values on X-Axis
         labels: labels,
 	      datasets: [
           {
-            label: "Quantidade de Atendimento Recepção",
-            data: qtdAtendimentoRecepcao,
+            label: "Quantidade de Ato Infracional",
+            data: qtdAtoInfracional,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
               'rgba(255, 206, 86, 0.5)', // Terceira cor do gradiente (no caso, amarelo)
             ],
@@ -53,8 +54,8 @@ export class ChartTypesServiceComponent implements OnInit {
             borderRadius: 10, // Adiciona bordas arredondadas
           },
           {
-            label: "Quantidade de Atendimento Social",
-            data: qtdAtendimentoSocial,
+            label: "Quantidade de Violência Física",
+            data: qtdFisica,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
               'rgba(0, 128, 0, 0.5)', // Terceira cor do gradiente (no caso, amarelo)
             ],
@@ -76,7 +77,7 @@ export class ChartTypesServiceComponent implements OnInit {
             right: 20, // Ajustar o preenchimento à direita
           }
         }
-      },
+      }
     });
   }
 }
