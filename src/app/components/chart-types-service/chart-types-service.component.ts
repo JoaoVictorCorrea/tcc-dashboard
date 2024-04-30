@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Chart } from 'chart.js/auto';
 import { TypesService } from 'src/app/models/types-service';
 import { TypesServiceService } from 'src/app/services/types-service.service';
 
@@ -27,6 +27,7 @@ export class ChartTypesServiceComponent implements OnInit {
        }
     });
   }
+
   createChart() {
     const labels = this.typesService.map(item => item.unidade.nome);
 

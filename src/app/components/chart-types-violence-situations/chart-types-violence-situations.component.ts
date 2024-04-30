@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Chart } from 'chart.js/auto';
 import { TypesViolenceSituations } from 'src/app/models/types-violence-situations';
 import { TypesViolenceSituationsService } from 'src/app/services/types-violence-situations.service';
 
