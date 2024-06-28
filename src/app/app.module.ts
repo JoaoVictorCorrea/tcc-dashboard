@@ -5,13 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChartAssistanceTypesComponent } from './components/chart-assistance-types/chart-assistance-types.component';
-import { ChartTypesViolenceSituationsComponent } from './components/chart-types-violence-situations/chart-types-violence-situations.component';
+import { ChartViolenceSituationsTypesComponent } from './components/chart-types-violence-situations/chart-violence-situations-types.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChartAssistanceTypesComponent,
-    ChartTypesViolenceSituationsComponent
+    ChartViolenceSituationsTypesComponent
   ],
   imports: [
     BrowserModule,

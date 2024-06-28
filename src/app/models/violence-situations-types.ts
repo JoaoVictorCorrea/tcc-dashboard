@@ -1,6 +1,6 @@
 import { Unit } from "./unit";
 
-export interface TypesViolenceSituations{
+export interface ViolenceSituationsTypes{
     unidade: Unit;
     qtdFisica: number;
     qtdPsicologica: number;

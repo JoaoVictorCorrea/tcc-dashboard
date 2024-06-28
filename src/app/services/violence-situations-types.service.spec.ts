@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TypesViolenceSituationsService } from './types-violence-situations.service';
+import { ViolenceSituationsTypesService } from './violence-situations-types.service';
 
 describe('TypesViolenceSituationsService', () => {
-  let service: TypesViolenceSituationsService;
+  let service: ViolenceSituationsTypesService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TypesViolenceSituationsService);
+    service = TestBed.inject(ViolenceSituationsTypesService);
   });
 
   it('should be created', () => {
