@@ -1,40 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { TypesService } from 'src/app/models/types-service';
-import { TypesServiceService } from 'src/app/services/types-service.service';
+import { AssistanceTypes } from 'src/app/models/assistance-types';
+import { AssistanceTypesService } from 'src/app/services/assistance-types.service';
 
 @Component({
-  selector: 'app-chart-types-service',
-  templateUrl: './chart-types-service.component.html',
-  styleUrls: ['./chart-types-service.component.css']
+  selector: 'app-chart-assistance-types',
+  templateUrl: './chart-assistance-types.component.html',
+  styleUrls: ['./chart-assistance-types.component.css']
 })
-export class ChartTypesServiceComponent implements OnInit {
+export class ChartAssistanceTypesComponent implements OnInit {
 
   chart: any;
-  typesService: TypesService[] = [];
+  assistanceTypes: AssistanceTypes[] = [];
 
-  constructor(private typesServiceService: TypesServiceService) { }
+  constructor(private assistanceTypesService: AssistanceTypesService) { }
   
   ngOnInit(): void {
-    this.loadChartTypesService();
+    this.loadChartAssistanceTypes();
   }
 
-  loadChartTypesService() {
-    this.typesServiceService.getTypesService().subscribe({
+  loadChartAssistanceTypes() {
+    this.assistanceTypesService.getAssistanceTypes().subscribe({
       next: data => {
-        this.typesService = data;
+        this.assistanceTypes = data;
         this.createChart();
        }
     });
   }
 
   createChart() {
-    const labels = this.typesService.map(item => item.unidade.nome);
+    const labels = this.assistanceTypes.map(item => item.unidade.nome);
 
-    const qtdAtendimentoSocial = this.typesService.map(item => item.qtdAtendimentoSocial);
-    const qtdAtendimentoRecepcao = this.typesService.map(item => item.qtdAtendimentoRecepcao);
+    const qtdAtendimentoSocial = this.assistanceTypes.map(item => item.qtdAtendimentoSocial);
+    const qtdAtendimentoRecepcao = this.assistanceTypes.map(item => item.qtdAtendimentoRecepcao);
   
-    this.chart = new Chart("ChartTypesService", {
+    this.chart = new Chart("ChartAssistanceTypes", {
       type: 'bar', //this denotes tha type of chart
 
       data: {// values on X-Axis

@@ -1,19 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TypesService } from '../models/types-service';
+import { AssistanceTypes } from '../models/assistance-types';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TypesServiceService {
+export class AssistanceTypesService {
 
   constructor(private http: HttpClient) { }
 
   baseUrl = "https://1wyaory04g.execute-api.us-east-1.amazonaws.com/query1";
 
-  getTypesService(): Observable<TypesService[]>{
+  getAssistanceTypes(): Observable<AssistanceTypes[]>{
 
-    return this.http.get<TypesService[]>(this.baseUrl);
+    return this.http.get<AssistanceTypes[]>(this.baseUrl);
   }
 }
