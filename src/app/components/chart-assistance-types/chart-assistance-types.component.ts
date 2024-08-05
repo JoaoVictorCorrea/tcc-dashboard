@@ -41,7 +41,7 @@ export class ChartAssistanceTypesComponent implements OnInit {
         labels: labels,
 	      datasets: [
           {
-            label: "Quantidade de Atendimento Recepção",
+            label: "Atendimento Recepção",
             data: qtdAtendimentoRecepcao,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
               'rgba(255, 206, 86, 0.5)', // Terceira cor do gradiente (no caso, amarelo)
@@ -54,7 +54,7 @@ export class ChartAssistanceTypesComponent implements OnInit {
             borderRadius: 10, // Adiciona bordas arredondadas
           },
           {
-            label: "Quantidade de Atendimento Social",
+            label: "Atendimento Social",
             data: qtdAtendimentoSocial,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
               'rgba(0, 128, 0, 0.5)', // Terceira cor do gradiente (no caso, amarelo)
@@ -71,11 +71,38 @@ export class ChartAssistanceTypesComponent implements OnInit {
       options: {
         aspectRatio: 4,
         responsive: true,
+        maintainAspectRatio: false, // Desabilitar para ajustar a altura
         layout: {
           padding: {
             left: 20, // Ajustar o preenchimento à esquerda
-            right: 20, // Ajustar o preenchimento à direita
+            right: 20, // Ajustar o preenchimento à direita7
           }
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            align: 'center',
+            labels: {
+              boxWidth: 20,
+              boxPadding: 20
+            }
+          },
+          title: {
+            display: true,
+            text: 'Atendimentos',
+            font: {
+              size: 20, // Tamanho da fonte
+              family: "'Roboto', sans-serif", // Família da fonte
+              weight: 'bold', // Peso da fonte (negrito)
+            },
+            color: '#333333', // Cor do texto
+            align: 'start',
+            padding: {
+              top: 0,
+              bottom: 10
+            }
+          },
         }
       },
     });

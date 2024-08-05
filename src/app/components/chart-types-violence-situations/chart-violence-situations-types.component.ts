@@ -41,7 +41,7 @@ export class ChartViolenceSituationsTypesComponent implements OnInit {
         labels: labels,
 	      datasets: [
           {
-            label: "Quantidade de Ato Infracional",
+            label: "Ato Infracional",
             data: qtdAtoInfracional,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
               'rgba(255, 206, 86, 0.5)', // Terceira cor do gradiente (no caso, amarelo)
@@ -54,7 +54,7 @@ export class ChartViolenceSituationsTypesComponent implements OnInit {
             borderRadius: 10, // Adiciona bordas arredondadas
           },
           {
-            label: "Quantidade de Violência Física",
+            label: "Violência Física",
             data: qtdFisica,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
               'rgba(0, 128, 0, 0.5)', // Terceira cor do gradiente (no caso, amarelo)
@@ -71,11 +71,38 @@ export class ChartViolenceSituationsTypesComponent implements OnInit {
       options: {
         aspectRatio: 4,
         responsive: true,
+        maintainAspectRatio: false,
         layout: {
           padding: {
             left: 20, // Ajustar o preenchimento à esquerda
             right: 20, // Ajustar o preenchimento à direita
           }
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            align: 'center',
+            labels: {
+              boxWidth: 20,
+              boxPadding: 20
+            }
+          },
+          title: {
+            display: true,
+            text: 'Situações de Violência',
+            font: {
+              size: 20, // Tamanho da fonte
+              family: "'Roboto', sans-serif", // Família da fonte
+              weight: 'bold', // Peso da fonte (negrito)
+            },
+            color: '#333333', // Cor do texto
+            align: 'start',
+            padding: {
+              top: 0,
+              bottom: 10
+            }
+          },
         }
       }
     });

@@ -14,3 +14,7 @@ select{
     transition: all 150ms ease;
     color: #5A667F;
 }
+
+.container{
+    margin-bottom: 30px;
+}
