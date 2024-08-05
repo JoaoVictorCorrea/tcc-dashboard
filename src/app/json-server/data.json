@@ -1,0 +1,38 @@
+{
+    "assistance-types":[
+        {
+            "unidade": {
+                "codigo": 1,
+                "nome": "CREAS"
+            },
+            "qtdAtendimentoRecepcao": 1,
+            "qtdAtendimentoSocial": 2,
+            "qtdAtendimentoAtualizacaoCadUnico": 3,
+            "qtdAtendimentoCadastramentoCadUnico": 4,
+            "qtdVisitaDomiciliar": 5
+        }
+    ],
+    "violence-situations-types":[
+        {
+            "unidade": {
+                "codigo": 1,
+                "nome": "CREAS"
+            },
+            "qtdFisica": 1,
+            "qtdPsicologica": 2,
+            "qtdAbusoOuViolenciaSexual": 3,
+            "qtdAtoInfracional": 4,
+            "qtdNegligenciaContraCrianca": 5
+        }
+    ],
+    "units":[
+        {
+            "codigo": 1,
+            "nome": "CREAS"
+        },
+        {
+            "codigo": 2,
+            "nome": "CRAS Jardim Santa Cruz"
+        }
+    ]
+}

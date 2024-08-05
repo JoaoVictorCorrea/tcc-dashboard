@@ -10,7 +10,7 @@ export class AssistanceTypesService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl = "https://1wyaory04g.execute-api.us-east-1.amazonaws.com/query1";
+  baseUrl = "http://localhost:3000/assistance-types"
 
   getAssistanceTypes(): Observable<AssistanceTypes[]>{
 

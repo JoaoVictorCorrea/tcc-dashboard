@@ -1,0 +1,12 @@
+<select name="selectUnit" id="unit">
+    <option value="">Selecione a Unidade</option>
+    <option *ngFor="let unit of units">
+        {{unit.nome}}
+    </option>
+</select>
+
+<select name="selectYear" id="year">
+    <option *ngFor="let year of years">
+        {{year}}
+    </option>
+</select>
