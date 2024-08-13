@@ -1,0 +1,12 @@
+<div id="filter">
+    <app-filter [units]="units" [selectedUnit]="selectedUnit" (selectedUnitEvent)="onSelectedUnit($event)"
+                [years]="years">
+    </app-filter>
+</div>
+<div id="dashboard-geral" *ngIf="!specific">
+    <app-chart-assistance-types></app-chart-assistance-types>
+    <app-chart-violence-situations-types></app-chart-violence-situations-types>
+</div>
+<div id="dashboard-specific" *ngIf="specific">
+    <p>Hello Specific</p>
+</div>

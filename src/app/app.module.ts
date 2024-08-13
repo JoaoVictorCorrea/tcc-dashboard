@@ -8,6 +8,8 @@ import { ChartAssistanceTypesComponent } from './components/chart-assistance-typ
 import { ChartViolenceSituationsTypesComponent } from './components/chart-types-violence-situations/chart-violence-situations-types.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { FilterComponent } from './components/filter/filter.component';
     ChartAssistanceTypesComponent,
     ChartViolenceSituationsTypesComponent,
     HeaderComponent,
-    FilterComponent
+    FilterComponent,
+    DashboardPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

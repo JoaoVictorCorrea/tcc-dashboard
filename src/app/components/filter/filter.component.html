@@ -1,7 +1,6 @@
 <div class="container">
-    <select name="selectUnit" id="unit">
-        <option value="">Selecione a Unidade</option>
-        <option *ngFor="let unit of units">
+    <select name="selectUnit" id="unit" [(ngModel)]="selectedUnit" (ngModelChange)="onUnitChanged()">
+        <option *ngFor="let unit of units" [ngValue]="unit">
             {{unit.nome}}
         </option>
     </select>
