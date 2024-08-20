@@ -33,18 +33,28 @@ export class DashboardPageComponent {
     this.loadChartViolenceSituationsTypes();
   }
 
-  loadChartAssistanceTypes() {
+  loadChartAssistanceTypes(unit?: Unit) {
     this.assistanceTypesService.getAssistanceTypes().subscribe({
       next: data => {
-        this.assistanceTypes = data;
+        if (unit) {
+          this.assistanceTypes = data.filter(item => item.unidade.codigo === this.selectedUnit.codigo);
+        }
+        else {
+          this.assistanceTypes = data;
+        }
        }
     });
   }
 
-  loadChartViolenceSituationsTypes() {
+  loadChartViolenceSituationsTypes(unit?: Unit) {
     this.violenceSituationsTypesService.getViolenceSituationsTypes().subscribe({
       next: data => {
-        this.violenceSituationsTypes = data;
+        if (unit) {
+          this.violenceSituationsTypes = data.filter(item => item.unidade.codigo === this.selectedUnit.codigo);
+        }
+        else {
+          this.violenceSituationsTypes = data;
+        }
        }
     });
   }
@@ -63,11 +73,16 @@ export class DashboardPageComponent {
 
   onSelectedUnit(unit: Unit) {
     this.selectedUnit = unit;
-    console.log(this.selectedUnit);
 
-    if (this.selectedUnit.codigo != 0)
+    if (this.selectedUnit.codigo != 0) {
       this.specific = true;
-    else
+      this.loadChartAssistanceTypes(this.selectedUnit);
+      this.loadChartViolenceSituationsTypes(this.selectedUnit);
+    }
+    else {
       this.specific = false;
+      this.loadChartAssistanceTypes();
+      this.loadChartViolenceSituationsTypes();
+    }
   }
 }
