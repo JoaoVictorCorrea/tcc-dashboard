@@ -37,27 +37,27 @@ export class ChartAssistanceTypesComponent implements OnChanges  {
         labels: labels,
 	      datasets: [
           {
-            label: "Atendimento Recepção",
-            data: qtdAtendimentoRecepcao,
+            label: "Atendimento Social",
+            data: qtdAtendimentoSocial,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(255, 206, 86, 0.5)', // Terceira cor do gradiente (no caso, amarelo)
+              'rgba(144, 238, 144, 0.75)', // Terceira cor do gradiente (no caso, amarelo)
             ],
             barPercentage: 0.8,
             borderColor: [ // Cores das bordas das barras
-              'rgba(255, 206, 86, 1)'
+              'rgba(144, 238, 144, 1)'
             ],
             borderWidth: 1,
             borderRadius: 10, // Adiciona bordas arredondadas
           },
           {
-            label: "Atendimento Social",
-            data: qtdAtendimentoSocial,
+            label: "Atendimento Recepção",
+            data: qtdAtendimentoRecepcao,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(0, 128, 0, 0.5)', // Terceira cor do gradiente (no caso, amarelo)
+              'rgba(255, 206, 86, 0.75)', // Terceira cor do gradiente (no caso, amarelo)
             ],
             barPercentage: 0.8,
             borderColor: [ // Cores das bordas das barras
-              'rgba(0, 128, 0, 0.5)'
+              'rgba(255, 206, 86, 1)'
             ],
             borderWidth: 1,
             borderRadius: 10, // Adiciona bordas arredondadas

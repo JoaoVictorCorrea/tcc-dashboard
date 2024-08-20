@@ -37,27 +37,27 @@ export class ChartViolenceSituationsTypesComponent implements OnChanges {
         labels: labels,
 	      datasets: [
           {
-            label: "Ato Infracional",
-            data: qtdAtoInfracional,
+            label: "Violência Física",
+            data: qtdFisica,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(255, 206, 86, 0.5)', // Terceira cor do gradiente (no caso, amarelo)
+              'rgba(53, 94, 59, 0.75)', // Terceira cor do gradiente (no caso, amarelo)
             ],
             barPercentage: 0.8,
             borderColor: [ // Cores das bordas das barras
-              'rgba(255, 206, 86, 1)'
+              'rgba(53, 94, 59, 1)'
             ],
             borderWidth: 1,
             borderRadius: 10, // Adiciona bordas arredondadas
           },
           {
-            label: "Violência Física",
-            data: qtdFisica,
+            label: "Ato Infracional",
+            data: qtdAtoInfracional,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(0, 128, 0, 0.5)', // Terceira cor do gradiente (no caso, amarelo)
+              'rgba(255, 0, 0, 0.7)', // Terceira cor do gradiente (no caso, amarelo)
             ],
             barPercentage: 0.8,
             borderColor: [ // Cores das bordas das barras
-              'rgba(0, 128, 0, 0.5)'
+              'rgba(255, 0, 0, 1)'
             ],
             borderWidth: 1,
             borderRadius: 10, // Adiciona bordas arredondadas
