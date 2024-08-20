@@ -1,34 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { AssistanceTypes } from 'src/app/models/assistance-types';
-import { AssistanceTypesService } from 'src/app/services/assistance-types.service';
 
 @Component({
   selector: 'app-chart-assistance-types',
   templateUrl: './chart-assistance-types.component.html',
   styleUrls: ['./chart-assistance-types.component.css']
 })
-export class ChartAssistanceTypesComponent implements OnInit {
+export class ChartAssistanceTypesComponent implements OnChanges  {
 
   chart: any;
+
+  @Input()
   assistanceTypes: AssistanceTypes[] = [];
 
-  constructor(private assistanceTypesService: AssistanceTypesService) { }
-  
-  ngOnInit(): void {
-    this.loadChartAssistanceTypes();
-  }
-
-  loadChartAssistanceTypes() {
-    this.assistanceTypesService.getAssistanceTypes().subscribe({
-      next: data => {
-        this.assistanceTypes = data;
-        this.createChart();
-       }
-    });
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['assistanceTypes']) {
+      this.createChart();
+    }
   }
 
   createChart() {
+    if (this.chart) {
+      this.chart.destroy(); // Destruir o gráfico anterior, se existir, para evitar sobreposição
+    }
+
     const labels = this.assistanceTypes.map(item => item.unidade.nome);
 
     const qtdAtendimentoSocial = this.assistanceTypes.map(item => item.qtdAtendimentoSocial);

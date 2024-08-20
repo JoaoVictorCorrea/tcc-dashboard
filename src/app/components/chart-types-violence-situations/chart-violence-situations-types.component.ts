@@ -1,34 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { ViolenceSituationsTypes } from 'src/app/models/violence-situations-types';
-import { ViolenceSituationsTypesService } from 'src/app/services/violence-situations-types.service';
 
 @Component({
   selector: 'app-chart-violence-situations-types',
   templateUrl: './chart-violence-situations-types.component.html',
   styleUrls: ['./chart-violence-situations-types.component.css']
 })
-export class ChartViolenceSituationsTypesComponent implements OnInit {
+export class ChartViolenceSituationsTypesComponent implements OnChanges {
 
   chart: any;
+
+  @Input()
   violenceSituationsTypes: ViolenceSituationsTypes[] = [];
 
-  constructor(private violenceSituationsTypesService: ViolenceSituationsTypesService) { }
-  
-  ngOnInit(): void {
-    this.loadChartViolenceSituationsTypes();
-  }
-
-  loadChartViolenceSituationsTypes() {
-    this.violenceSituationsTypesService.getViolenceSituationsTypes().subscribe({
-      next: data => {
-        this.violenceSituationsTypes = data;
-        this.createChart();
-       }
-    });
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['violenceSituationsTypes']) {
+      this.createChart();
+    }
   }
 
   createChart() {
+    if (this.chart) {
+      this.chart.destroy(); // Destruir o gráfico anterior, se existir, para evitar sobreposição
+    }
+
     const labels = this.violenceSituationsTypes.map(item => item.unidade.nome);
 
     const qtdAtoInfracional = this.violenceSituationsTypes.map(item => item.qtdAtoInfracional);

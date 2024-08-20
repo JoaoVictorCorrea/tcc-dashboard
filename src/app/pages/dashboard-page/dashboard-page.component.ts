@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+import { AssistanceTypes } from 'src/app/models/assistance-types';
 import { Unit } from 'src/app/models/unit';
+import { ViolenceSituationsTypes } from 'src/app/models/violence-situations-types';
+import { AssistanceTypesService } from 'src/app/services/assistance-types.service';
 import { UnitService } from 'src/app/services/unit.service';
+import { ViolenceSituationsTypesService } from 'src/app/services/violence-situations-types.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -13,12 +17,36 @@ export class DashboardPageComponent {
   selectedUnit: Unit = {} as Unit;
   years: string[] = ["Geral", "2024", "2023", "2022", "2021", "2020"];
 
+  violenceSituationsTypes: ViolenceSituationsTypes[] = [];
+
+  assistanceTypes: AssistanceTypes[] = [];
+
   specific: boolean = false;
 
-  constructor(private unitService: UnitService) { }
+  constructor(private unitService: UnitService,
+              private violenceSituationsTypesService: ViolenceSituationsTypesService,
+              private assistanceTypesService: AssistanceTypesService) { }
 
   ngOnInit(): void {
     this.loadUnits();
+    this.loadChartAssistanceTypes();
+    this.loadChartViolenceSituationsTypes();
+  }
+
+  loadChartAssistanceTypes() {
+    this.assistanceTypesService.getAssistanceTypes().subscribe({
+      next: data => {
+        this.assistanceTypes = data;
+       }
+    });
+  }
+
+  loadChartViolenceSituationsTypes() {
+    this.violenceSituationsTypesService.getViolenceSituationsTypes().subscribe({
+      next: data => {
+        this.violenceSituationsTypes = data;
+       }
+    });
   }
 
   loadUnits() {
