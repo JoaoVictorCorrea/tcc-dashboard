@@ -29,6 +29,7 @@ export class ChartViolenceSituationsTypesComponent implements OnChanges {
 
     const qtdAtoInfracional = this.violenceSituationsTypes.map(item => item.qtdAtoInfracional);
     const qtdFisica = this.violenceSituationsTypes.map(item => item.qtdFisica);
+    const qtdPsicologica = this.violenceSituationsTypes.map(item => item.qtdPsicologica);
   
     this.chart = new Chart("ChartViolenceSituationsTypes", {
       type: 'bar', //this denotes tha type of chart
@@ -40,7 +41,7 @@ export class ChartViolenceSituationsTypesComponent implements OnChanges {
             label: "Violência Física",
             data: qtdFisica,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(53, 94, 59, 0.75)', // Terceira cor do gradiente (no caso, amarelo)
+              'rgba(53, 94, 59, 0.75)', 
             ],
             barPercentage: 0.8,
             borderColor: [ // Cores das bordas das barras
@@ -53,11 +54,24 @@ export class ChartViolenceSituationsTypesComponent implements OnChanges {
             label: "Ato Infracional",
             data: qtdAtoInfracional,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(255, 0, 0, 0.7)', // Terceira cor do gradiente (no caso, amarelo)
+              'rgba(255, 0, 0, 0.7)', 
             ],
             barPercentage: 0.8,
             borderColor: [ // Cores das bordas das barras
               'rgba(255, 0, 0, 1)'
+            ],
+            borderWidth: 1,
+            borderRadius: 10, // Adiciona bordas arredondadas
+          },
+          {
+            label: "Violência Psicológica",
+            data: qtdPsicologica,
+            backgroundColor: [ // Aqui você define os gradientes para cada barra
+              'rgba(255, 0, 255, 0.7)', 
+            ],
+            barPercentage: 0.8,
+            borderColor: [ // Cores das bordas das barras
+              'rgba(255, 0, 255, 1)'
             ],
             borderWidth: 1,
             borderRadius: 10, // Adiciona bordas arredondadas

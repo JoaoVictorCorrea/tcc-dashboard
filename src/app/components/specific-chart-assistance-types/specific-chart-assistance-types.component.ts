@@ -29,6 +29,7 @@ export class SpecificChartAssistanceTypesComponent implements OnChanges {
 
     const qtdAtendimentoSocial = this.assistanceTypes.map(item => item.qtdAtendimentoSocial);
     const qtdAtendimentoRecepcao = this.assistanceTypes.map(item => item.qtdAtendimentoRecepcao);
+    const qtdAtendimentoCadastramentoCadUnico = this.assistanceTypes.map(item => item.qtdAtendimentoCadastramentoCadUnico);
   
     this.chart = new Chart("SpecificChartAssistanceTypes", {
       type: 'bar', //this denotes tha type of chart
@@ -40,7 +41,7 @@ export class SpecificChartAssistanceTypesComponent implements OnChanges {
             label: "Atendimento Social",
             data: qtdAtendimentoSocial,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(144, 238, 144, 0.75)', // Terceira cor do gradiente (no caso, amarelo)
+              'rgba(144, 238, 144, 0.75)', 
             ],
             barPercentage: 0.8,
             borderColor: [ // Cores das bordas das barras
@@ -53,11 +54,24 @@ export class SpecificChartAssistanceTypesComponent implements OnChanges {
             label: "Atendimento Recepção",
             data: qtdAtendimentoRecepcao,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(255, 206, 86, 0.75)', // Terceira cor do gradiente (no caso, amarelo)
+              'rgba(255, 206, 86, 0.75)', 
             ],
             barPercentage: 0.8,
             borderColor: [ // Cores das bordas das barras
               'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1,
+            borderRadius: 10, // Adiciona bordas arredondadas
+          },
+          {
+            label: "Atendimento CadÚnico",
+            data: qtdAtendimentoCadastramentoCadUnico,
+            backgroundColor: [ // Aqui você define os gradientes para cada barra
+              'rgba(104, 149, 197, 0.75)', 
+            ],
+            barPercentage: 0.8,
+            borderColor: [ // Cores das bordas das barras
+              'rgba(104, 149, 197, 1)'
             ],
             borderWidth: 1,
             borderRadius: 10, // Adiciona bordas arredondadas
