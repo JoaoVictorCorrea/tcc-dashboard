@@ -21,3 +21,9 @@ body{
     margin-right: 10px;
     height: 100%;
 }
+
+.specific-chart-container{
+    height: 500px;
+    width: 65%;
+    margin-top: 50px;
+}
