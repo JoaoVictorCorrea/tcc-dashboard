@@ -1,0 +1,30 @@
+.quantity-chart{
+    border: 1px solid #E8EAED;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+    width: 30vw;
+    height: 100%;
+    padding: 1vh;
+    padding-right: 2vh;
+    margin-right: 2vw;
+}
+
+.unit-name{
+    font-size: 2vh;
+    font-weight: bold;
+    padding: 1vh;
+}
+
+.quantity{
+    font-size: 5vh;
+    font-weight: bold;
+    padding-left: 1vh;
+    padding-bottom: 1vh;
+}
+
+.description{
+    font-size: 2vh;
+    color: #9098A9;
+    padding-left: 1vh;
+}

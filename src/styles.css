@@ -1,6 +1,7 @@
 body{
     background-color: white;
     margin-left: 25px;
+    font-family: "'Roboto', sans-serif'";
 }
 
 .title{
@@ -26,4 +27,10 @@ body{
     height: 40vh;
     width: 65vw;
     margin-top: 4vh;
+}
+
+.quantity-chart-container{
+    display: flex;
+    justify-content: flex-start;
+    height: 13vh;
 }

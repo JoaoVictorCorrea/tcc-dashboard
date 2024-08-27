@@ -18,8 +18,13 @@ export class DashboardPageComponent {
   years: string[] = ["Geral", "2024", "2023", "2022", "2021", "2020"];
 
   violenceSituationsTypes: ViolenceSituationsTypes[] = [];
-
   assistanceTypes: AssistanceTypes[] = [];
+
+  totalAssistanceTypes: number = 0.0;
+  totalViolenceSituationsTypes: number = 0.0;
+
+  descriptionAssistanceTypes: string = 'atendimentos';
+  descriptionViolenceSituationsTypes: string = 'situações de violência';
 
   specific: boolean = false;
 
@@ -38,12 +43,38 @@ export class DashboardPageComponent {
       next: data => {
         if (unit) {
           this.assistanceTypes = data.filter(item => item.unidade.codigo === this.selectedUnit.codigo);
+          this.totalAssistanceTypes = this.sumAssistanceTypes();
+          this.totalViolenceSituationsTypes = this.sumViolenceSituationsTypes();
         }
         else {
           this.assistanceTypes = data;
         }
        }
     });
+  }
+
+  sumViolenceSituationsTypes(): number {
+    let sum = 0.0;
+
+    sum += this.violenceSituationsTypes.reduce((sum, item) => sum + item.qtdAbusoOuViolenciaSexual, 0);
+    sum += this.violenceSituationsTypes.reduce((sum, item) => sum + item.qtdAtoInfracional, 0);
+    sum += this.violenceSituationsTypes.reduce((sum, item) => sum + item.qtdFisica, 0);
+    sum += this.violenceSituationsTypes.reduce((sum, item) => sum + item.qtdNegligenciaContraCrianca, 0);
+    sum += this.violenceSituationsTypes.reduce((sum, item) => sum + item.qtdPsicologica, 0);
+
+    return sum;
+  }
+
+  sumAssistanceTypes(): number {
+    let sum = 0.0;
+
+    sum += this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoAtualizacaoCadUnico, 0);
+    sum += this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoCadastramentoCadUnico, 0);
+    sum += this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoRecepcao, 0);
+    sum += this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoSocial, 0);
+    sum += this.assistanceTypes.reduce((sum, item) => sum + item.qtdVisitaDomiciliar, 0);
+
+    return sum;
   }
 
   loadChartViolenceSituationsTypes(unit?: Unit) {
