@@ -94,6 +94,10 @@ export class ChartAssistanceTypesComponent implements OnChanges  {
             position: 'top',
             align: 'center',
             labels: {
+              font: {
+                size: 20, // Tamanho da fonte
+                family: "'Roboto', sans-serif", // Família da fonte
+              },
               boxWidth: 20,
               boxPadding: 20
             }
@@ -102,7 +106,7 @@ export class ChartAssistanceTypesComponent implements OnChanges  {
             display: true,
             text: 'Atendimentos',
             font: {
-              size: 20, // Tamanho da fonte
+              size: 22, // Tamanho da fonte
               family: "'Roboto', sans-serif", // Família da fonte
               weight: 'bold', // Peso da fonte (negrito)
             },
@@ -112,6 +116,16 @@ export class ChartAssistanceTypesComponent implements OnChanges  {
               top: 0,
               bottom: 10
             }
+          },
+        },
+        scales: {
+          x: {
+            ticks: {
+              font: {
+                size: 18, // Aumenta o tamanho da fonte das categorias do eixo x
+                family: "'Roboto', sans-serif",
+              },
+            },
           },
         }
       },

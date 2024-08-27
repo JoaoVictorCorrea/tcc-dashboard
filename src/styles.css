@@ -8,8 +8,8 @@ body{
 }
 
 .chart-container{
-    height: 500px;
-    margin-top: 50px;
+    height: 40vh;
+    margin-top: 4vh;
 }
 
 .chart{
@@ -23,7 +23,7 @@ body{
 }
 
 .specific-chart-container{
-    height: 500px;
-    width: 65%;
-    margin-top: 50px;
+    height: 40vh;
+    width: 65vw;
+    margin-top: 4vh;
 }
