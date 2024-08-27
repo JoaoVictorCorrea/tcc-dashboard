@@ -1,6 +1,7 @@
 body{
     background-color: white;
-    margin-left: 25px;
+    margin-left: 2vw;
+    margin-right: 2vw;
     font-family: "'Roboto', sans-serif'";
 }
 
@@ -10,7 +11,7 @@ body{
 
 .chart-container{
     height: 40vh;
-    margin-top: 4vh;
+    margin-top: 3vh;
 }
 
 .chart{

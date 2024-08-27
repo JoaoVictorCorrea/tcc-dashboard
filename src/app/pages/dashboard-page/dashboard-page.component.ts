@@ -43,8 +43,7 @@ export class DashboardPageComponent {
       next: data => {
         if (unit) {
           this.assistanceTypes = data.filter(item => item.unidade.codigo === this.selectedUnit.codigo);
-          this.totalAssistanceTypes = this.sumAssistanceTypes();
-          this.totalViolenceSituationsTypes = this.sumViolenceSituationsTypes();
+          this.totalAssistanceTypes = this.sumAssistanceTypes(); 
         }
         else {
           this.assistanceTypes = data;
@@ -82,6 +81,7 @@ export class DashboardPageComponent {
       next: data => {
         if (unit) {
           this.violenceSituationsTypes = data.filter(item => item.unidade.codigo === this.selectedUnit.codigo);
+          this.totalViolenceSituationsTypes = this.sumViolenceSituationsTypes();
         }
         else {
           this.violenceSituationsTypes = data;

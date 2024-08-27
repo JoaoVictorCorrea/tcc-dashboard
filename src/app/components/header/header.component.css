@@ -1,4 +1,7 @@
 .title{
+    font-family: 'Arial', sans-serif;
+    font-size: 2vh;
+    font-weight: bold;
     text-align: start;
-    font-family: 'Roboto', sans-serif;
+    margin-top: 2vh;
 }
