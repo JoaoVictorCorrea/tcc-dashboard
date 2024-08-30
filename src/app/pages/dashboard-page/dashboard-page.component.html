@@ -12,6 +12,10 @@
         <app-quantity-chart [unitName]="selectedUnit.nome" [total]="totalAssistanceTypes" [description]="descriptionAssistanceTypes"></app-quantity-chart>
         <app-quantity-chart [unitName]="selectedUnit.nome" [total]="totalViolenceSituationsTypes" [description]="descriptionViolenceSituationsTypes"></app-quantity-chart>
     </div>
-    <app-specific-chart-assistance-types [assistanceTypes]="assistanceTypes"></app-specific-chart-assistance-types>
-    <app-specific-chart-violence-situation-types [violenceSituationsTypes]="violenceSituationsTypes"></app-specific-chart-violence-situation-types>
+    <div class="specific-chart-container">
+        <app-specific-chart-assistance-types [assistanceTypes]="assistanceTypes"></app-specific-chart-assistance-types>
+        <app-pie-chart-assistance-types></app-pie-chart-assistance-types>
+        <app-specific-chart-violence-situation-types [violenceSituationsTypes]="violenceSituationsTypes"></app-specific-chart-violence-situation-types>
+        <app-pie-chart-violence-situations-types></app-pie-chart-violence-situations-types>
+    </div>
 </div>

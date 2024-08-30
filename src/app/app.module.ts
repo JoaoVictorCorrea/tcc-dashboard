@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { SpecificChartAssistanceTypesComponent } from './components/specific-chart-assistance-types/specific-chart-assistance-types.component';
 import { SpecificChartViolenceSituationTypesComponent } from './components/specific-chart-violence-situation-types/specific-chart-violence-situation-types.component';
 import { QuantityChartComponent } from './components/quantity-chart/quantity-chart.component';
+import { PieChartViolenceSituationsTypesComponent } from './components/pie-chart-violence-situations-types/pie-chart-violence-situations-types.component';
+import { PieChartAssistanceTypesComponent } from './components/pie-chart-assistance-types/pie-chart-assistance-types.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { QuantityChartComponent } from './components/quantity-chart/quantity-cha
     DashboardPageComponent,
     SpecificChartAssistanceTypesComponent,
     SpecificChartViolenceSituationTypesComponent,
-    QuantityChartComponent
+    QuantityChartComponent,
+    PieChartViolenceSituationsTypesComponent,
+    PieChartAssistanceTypesComponent
   ],
   imports: [
     BrowserModule,
