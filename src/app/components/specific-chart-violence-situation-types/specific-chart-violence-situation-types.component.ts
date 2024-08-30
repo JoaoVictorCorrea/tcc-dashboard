@@ -40,12 +40,15 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
     }
 
     const fontSizePx = window.innerHeight * (3 / 100); // Converte para pixels
+    const fontSizeLegendPx = window.innerHeight * (2 / 100); // Converte para pixels
 
     const labels = this.violenceSituationsTypes.map(item => item.unidade.nome);
 
     const qtdAtoInfracional = this.violenceSituationsTypes.map(item => item.qtdAtoInfracional);
     const qtdFisica = this.violenceSituationsTypes.map(item => item.qtdFisica);
     const qtdPsicologica = this.violenceSituationsTypes.map(item => item.qtdPsicologica);
+    const qtdSexual = this.violenceSituationsTypes.map(item => item.qtdAbusoOuViolenciaSexual);
+    const qtdNegligenciaContraCrianca = this.violenceSituationsTypes.map(item => item.qtdNegligenciaContraCrianca);
   
     this.chart = new Chart("SpecificChartViolenceSituationsTypes", {
       type: 'bar', //this denotes tha type of chart
@@ -54,7 +57,7 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
         labels: labels,
 	      datasets: [
           {
-            label: "Violência Física",
+            label: "Física",
             data: qtdFisica,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
               'rgba(173, 216, 230, 0.5)', 
@@ -80,7 +83,7 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
             borderRadius: 10, // Adiciona bordas arredondadas
           },
           {
-            label: "Violência Psicológica",
+            label: "Psicológica",
             data: qtdPsicologica,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
               'rgba(255, 0, 255, 0.75)', 
@@ -88,6 +91,32 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
             barPercentage: 0.8,
             borderColor: [ // Cores das bordas das barras
               'rgba(255, 0, 255, 1)'
+            ],
+            borderWidth: 1,
+            borderRadius: 10, // Adiciona bordas arredondadas
+          },
+          {
+            label: "Abuso ou Violência Sexual",
+            data: qtdSexual,
+            backgroundColor: [ // Aqui você define os gradientes para cada barra
+              'rgba(128, 0, 128, 0.75)', 
+            ],
+            barPercentage: 0.8,
+            borderColor: [ // Cores das bordas das barras
+              'rgba(128, 0, 128, 1)'
+            ],
+            borderWidth: 1,
+            borderRadius: 10, // Adiciona bordas arredondadas
+          },
+          {
+            label: "Negligência contra Criança",
+            data: qtdNegligenciaContraCrianca,
+            backgroundColor: [ // Aqui você define os gradientes para cada barra
+              'rgba(255, 165, 0, 0.75)', 
+            ],
+            barPercentage: 0.8,
+            borderColor: [ // Cores das bordas das barras
+              'rgba(255, 165, 0, 1)'
             ],
             borderWidth: 1,
             borderRadius: 10, // Adiciona bordas arredondadas
@@ -112,7 +141,7 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
             labels: {
               font: {
                 size: 20, // Tamanho da fonte
-                family: "'Roboto', sans-serif", // Família da fonte
+                family: "'Arial', sans-serif", // Família da fonte
               },
               boxWidth: 20,
               boxPadding: 20
@@ -123,7 +152,7 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
             text: 'Situações de Violência',
             font: {
               size: fontSizePx, // Tamanho da fonte
-              family: "'Roboto', sans-serif", // Família da fonte
+              family: "'Arial', sans-serif", // Família da fonte
               weight: 'bold', // Peso da fonte (negrito)
             },
             color: '#333333', // Cor do texto
@@ -138,11 +167,25 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
           x: {
             ticks: {
               font: {
-                size: 18, // Aumenta o tamanho da fonte das categorias do eixo x
-                family: "'Roboto', sans-serif",
+                size: fontSizeLegendPx, // Aumenta o tamanho da fonte das categorias do eixo x
+                family: "'Arial', sans-serif",
               },
             },
+            grid: {
+              display: false // Desabilita a exibição das linhas da grade do eixo x
+            }
           },
+          y: {
+            ticks: {
+              font: {
+                size: fontSizeLegendPx, // Aumenta o tamanho da fonte dos ticks do eixo y
+                family: "'Arial', sans-serif",
+              },
+            },
+            grid: {
+              color: 'rgba(0, 0, 0, 0.1)', // Define a cor das linhas da grade (opcional)
+            }
+          }
         }
       }
     });

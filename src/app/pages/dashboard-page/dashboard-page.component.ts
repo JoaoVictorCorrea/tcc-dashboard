@@ -43,7 +43,7 @@ export class DashboardPageComponent {
       next: data => {
         if (unit) {
           this.assistanceTypes = data.filter(item => item.unidade.codigo === this.selectedUnit.codigo);
-          this.totalAssistanceTypes = this.sumAssistanceTypes(); 
+          this.totalAssistanceTypes = this.sumTotalAssistanceTypes(); 
         }
         else {
           this.assistanceTypes = data;
@@ -52,7 +52,7 @@ export class DashboardPageComponent {
     });
   }
 
-  sumViolenceSituationsTypes(): number {
+  sumTotalViolenceSituationsTypes(): number {
     let sum = 0.0;
 
     sum += this.violenceSituationsTypes.reduce((sum, item) => sum + item.qtdAbusoOuViolenciaSexual, 0);
@@ -64,7 +64,7 @@ export class DashboardPageComponent {
     return sum;
   }
 
-  sumAssistanceTypes(): number {
+  sumTotalAssistanceTypes(): number {
     let sum = 0.0;
 
     sum += this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoAtualizacaoCadUnico, 0);
@@ -81,7 +81,7 @@ export class DashboardPageComponent {
       next: data => {
         if (unit) {
           this.violenceSituationsTypes = data.filter(item => item.unidade.codigo === this.selectedUnit.codigo);
-          this.totalViolenceSituationsTypes = this.sumViolenceSituationsTypes();
+          this.totalViolenceSituationsTypes = this.sumTotalViolenceSituationsTypes();
         }
         else {
           this.violenceSituationsTypes = data;

@@ -8,9 +8,6 @@ import { Component, Input } from '@angular/core';
 export class QuantityChartComponent {
 
   @Input()
-  unitName: string = "";
-
-  @Input()
   total: number = 0.0;
 
   @Input()

@@ -7,9 +7,9 @@
             },
             "qtdAtendimentoRecepcao": 221,
             "qtdAtendimentoSocial": 192,
-            "qtdAtendimentoAtualizacaoCadUnico": 3,
+            "qtdAtendimentoAtualizacaoCadUnico": 85,
             "qtdAtendimentoCadastramentoCadUnico": 216,
-            "qtdVisitaDomiciliar": 5
+            "qtdVisitaDomiciliar": 50
         },
         {
             "unidade": {
@@ -18,9 +18,9 @@
             },
             "qtdAtendimentoRecepcao": 104,
             "qtdAtendimentoSocial": 61,
-            "qtdAtendimentoAtualizacaoCadUnico": 3,
+            "qtdAtendimentoAtualizacaoCadUnico": 500,
             "qtdAtendimentoCadastramentoCadUnico": 98,
-            "qtdVisitaDomiciliar": 5
+            "qtdVisitaDomiciliar": 250
         },
         {
             "unidade": {
@@ -29,9 +29,9 @@
             },
             "qtdAtendimentoRecepcao": 309,
             "qtdAtendimentoSocial": 252,
-            "qtdAtendimentoAtualizacaoCadUnico": 3,
+            "qtdAtendimentoAtualizacaoCadUnico": 150,
             "qtdAtendimentoCadastramentoCadUnico": 283,
-            "qtdVisitaDomiciliar": 5
+            "qtdVisitaDomiciliar": 300
         },
         {
             "unidade": {
@@ -40,9 +40,9 @@
             },
             "qtdAtendimentoRecepcao": 54,
             "qtdAtendimentoSocial": 37,
-            "qtdAtendimentoAtualizacaoCadUnico": 3,
+            "qtdAtendimentoAtualizacaoCadUnico": 76,
             "qtdAtendimentoCadastramentoCadUnico": 78,
-            "qtdVisitaDomiciliar": 5
+            "qtdVisitaDomiciliar": 86
         },
         {
             "unidade": {
@@ -51,9 +51,9 @@
             },
             "qtdAtendimentoRecepcao": 206,
             "qtdAtendimentoSocial": 143,
-            "qtdAtendimentoAtualizacaoCadUnico": 3,
+            "qtdAtendimentoAtualizacaoCadUnico": 122,
             "qtdAtendimentoCadastramentoCadUnico": 184,
-            "qtdVisitaDomiciliar": 5
+            "qtdVisitaDomiciliar": 30
         },
         {
             "unidade": {
@@ -62,9 +62,9 @@
             },
             "qtdAtendimentoRecepcao": 156,
             "qtdAtendimentoSocial": 83,
-            "qtdAtendimentoAtualizacaoCadUnico": 3,
+            "qtdAtendimentoAtualizacaoCadUnico": 70,
             "qtdAtendimentoCadastramentoCadUnico": 128,
-            "qtdVisitaDomiciliar": 5
+            "qtdVisitaDomiciliar": 44
         }
     ],
     "violence-situations-types":[
@@ -75,9 +75,9 @@
             },
             "qtdFisica": 61,
             "qtdPsicologica": 43,
-            "qtdAbusoOuViolenciaSexual": 3,
+            "qtdAbusoOuViolenciaSexual": 100,
             "qtdAtoInfracional": 82,
-            "qtdNegligenciaContraCrianca": 5
+            "qtdNegligenciaContraCrianca": 57
         },
         {
             "unidade": {
@@ -86,9 +86,9 @@
             },
             "qtdFisica": 27,
             "qtdPsicologica": 44,
-            "qtdAbusoOuViolenciaSexual": 3,
+            "qtdAbusoOuViolenciaSexual": 300,
             "qtdAtoInfracional": 35,
-            "qtdNegligenciaContraCrianca": 5
+            "qtdNegligenciaContraCrianca": 75
         },
         {
             "unidade": {
@@ -97,9 +97,9 @@
             },
             "qtdFisica": 12,
             "qtdPsicologica": 36,
-            "qtdAbusoOuViolenciaSexual": 3,
+            "qtdAbusoOuViolenciaSexual": 521,
             "qtdAtoInfracional": 58,
-            "qtdNegligenciaContraCrianca": 5
+            "qtdNegligenciaContraCrianca": 153
         },
         {
             "unidade": {
@@ -108,9 +108,9 @@
             },
             "qtdFisica": 62,
             "qtdPsicologica": 42,
-            "qtdAbusoOuViolenciaSexual": 3,
+            "qtdAbusoOuViolenciaSexual": 423,
             "qtdAtoInfracional": 25,
-            "qtdNegligenciaContraCrianca": 5
+            "qtdNegligenciaContraCrianca": 222
         },
         {
             "unidade": {
@@ -119,9 +119,9 @@
             },
             "qtdFisica": 24,
             "qtdPsicologica": 52,
-            "qtdAbusoOuViolenciaSexual": 3,
+            "qtdAbusoOuViolenciaSexual": 76,
             "qtdAtoInfracional": 77,
-            "qtdNegligenciaContraCrianca": 5
+            "qtdNegligenciaContraCrianca": 98
         },
         {
             "unidade": {
@@ -130,9 +130,9 @@
             },
             "qtdFisica": 31,
             "qtdPsicologica": 46,
-            "qtdAbusoOuViolenciaSexual": 3,
+            "qtdAbusoOuViolenciaSexual": 123,
             "qtdAtoInfracional": 64,
-            "qtdNegligenciaContraCrianca": 5
+            "qtdNegligenciaContraCrianca": 345
         }        
     ],
     "units":[

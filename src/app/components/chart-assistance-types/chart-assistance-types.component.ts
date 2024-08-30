@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { AssistanceTypes } from 'src/app/models/assistance-types';
 
@@ -7,12 +7,22 @@ import { AssistanceTypes } from 'src/app/models/assistance-types';
   templateUrl: './chart-assistance-types.component.html',
   styleUrls: ['./chart-assistance-types.component.css']
 })
-export class ChartAssistanceTypesComponent implements OnChanges  {
+export class ChartAssistanceTypesComponent implements OnChanges, OnInit, OnDestroy  {
 
   chart: any;
 
   @Input()
   assistanceTypes: AssistanceTypes[] = [];
+
+  ngOnInit(): void {
+    // Adiciona o ouvinte para redimensionamento da janela
+    window.addEventListener('resize', this.onResize.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    // Remove o ouvinte ao destruir o componente para evitar vazamento de memória
+    window.removeEventListener('resize', this.onResize.bind(this));
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['assistanceTypes']) {
@@ -20,10 +30,17 @@ export class ChartAssistanceTypesComponent implements OnChanges  {
     }
   }
 
+  onResize() {
+    this.createChart(); // Recria o gráfico ao redimensionar a janela
+  }
+
   createChart() {
     if (this.chart) {
       this.chart.destroy(); // Destruir o gráfico anterior, se existir, para evitar sobreposição
     }
+
+    const fontSizePx = window.innerHeight * (3 / 100); // Converte para pixels
+    const fontSizeLegendPx = window.innerHeight * (2 / 100); // Converte para pixels
 
     const labels = this.assistanceTypes.map(item => item.unidade.nome);
 
@@ -106,7 +123,7 @@ export class ChartAssistanceTypesComponent implements OnChanges  {
             display: true,
             text: 'Atendimentos',
             font: {
-              size: 22, // Tamanho da fonte
+              size: fontSizePx, // Tamanho da fonte
               family: "'Roboto', sans-serif", // Família da fonte
               weight: 'bold', // Peso da fonte (negrito)
             },
@@ -122,11 +139,25 @@ export class ChartAssistanceTypesComponent implements OnChanges  {
           x: {
             ticks: {
               font: {
-                size: 18, // Aumenta o tamanho da fonte das categorias do eixo x
-                family: "'Roboto', sans-serif",
+                size: fontSizeLegendPx, // Aumenta o tamanho da fonte das categorias do eixo x
+                family: "'Arial', sans-serif",
               },
             },
+            grid: {
+              display: false // Desabilita a exibição das linhas da grade do eixo x
+            }
           },
+          y: {
+            ticks: {
+              font: {
+                size: fontSizeLegendPx, // Aumenta o tamanho da fonte dos ticks do eixo y
+                family: "'Arial', sans-serif",
+              },
+            },
+            grid: {
+              color: 'rgba(0, 0, 0, 0.1)', // Define a cor das linhas da grade (opcional)
+            }
+          }
         }
       },
     });

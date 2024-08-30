@@ -32,7 +32,7 @@ export class PieChartViolenceSituationsTypesComponent {
         datasets: [
           {
             data: [this.totalOpenViolenceSituations, this.totalClosedViolenceSituations],
-            backgroundColor: ['#FF3333', '#33FF33'],
+            backgroundColor: ['#FF5555', '#C0C0C0'],
           }
         ]
       },

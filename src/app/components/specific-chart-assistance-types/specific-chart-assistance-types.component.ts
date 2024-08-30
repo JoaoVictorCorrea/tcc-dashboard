@@ -40,12 +40,15 @@ export class SpecificChartAssistanceTypesComponent implements OnChanges, OnInit,
     }
 
     const fontSizePx = window.innerHeight * (3 / 100); // Converte para pixels
+    const fontSizeLegendPx = window.innerHeight * (2 / 100); // Converte para pixels
 
     const labels = this.assistanceTypes.map(item => item.unidade.nome);
 
     const qtdAtendimentoSocial = this.assistanceTypes.map(item => item.qtdAtendimentoSocial);
     const qtdAtendimentoRecepcao = this.assistanceTypes.map(item => item.qtdAtendimentoRecepcao);
     const qtdAtendimentoCadastramentoCadUnico = this.assistanceTypes.map(item => item.qtdAtendimentoCadastramentoCadUnico);
+    const qtdAtendimentoAtualizacaoCadUnico = this.assistanceTypes.map(item => item.qtdAtendimentoAtualizacaoCadUnico);
+    const qtdAtendimentoVisitaDomiciliar = this.assistanceTypes.map(item => item.qtdVisitaDomiciliar);
   
     this.chart = new Chart("SpecificChartAssistanceTypes", {
       type: 'bar', //this denotes tha type of chart
@@ -80,7 +83,7 @@ export class SpecificChartAssistanceTypesComponent implements OnChanges, OnInit,
             borderRadius: 10, // Adiciona bordas arredondadas
           },
           {
-            label: "Atendimento CadÚnico",
+            label: "Cadastro CadÚnico",
             data: qtdAtendimentoCadastramentoCadUnico,
             backgroundColor: [ // Aqui você define os gradientes para cada barra
               'rgba(104, 149, 197, 0.75)', 
@@ -88,6 +91,32 @@ export class SpecificChartAssistanceTypesComponent implements OnChanges, OnInit,
             barPercentage: 0.8,
             borderColor: [ // Cores das bordas das barras
               'rgba(104, 149, 197, 1)'
+            ],
+            borderWidth: 1,
+            borderRadius: 10, // Adiciona bordas arredondadas
+          },
+          {
+            label: "Atualização CadÚnico",
+            data: qtdAtendimentoAtualizacaoCadUnico,
+            backgroundColor: [ // Aqui você define os gradientes para cada barra
+              'rgba(255, 105, 180, 0.75)', 
+            ],
+            barPercentage: 0.8,
+            borderColor: [ // Cores das bordas das barras
+              'rgba(255, 105, 180, 1)'
+            ],
+            borderWidth: 1,
+            borderRadius: 10, // Adiciona bordas arredondadas
+          },
+          {
+            label: "Visita Domiciliar",
+            data: qtdAtendimentoVisitaDomiciliar,
+            backgroundColor: [ // Aqui você define os gradientes para cada barra
+              'rgba(165, 42, 42, 0.75)', 
+            ],
+            barPercentage: 0.8,
+            borderColor: [ // Cores das bordas das barras
+              'rgba(165, 42, 42, 1)'
             ],
             borderWidth: 1,
             borderRadius: 10, // Adiciona bordas arredondadas
@@ -138,11 +167,25 @@ export class SpecificChartAssistanceTypesComponent implements OnChanges, OnInit,
           x: {
             ticks: {
               font: {
-                size: 18, // Aumenta o tamanho da fonte das categorias do eixo x
-                family: "'Roboto', sans-serif",
+                size: fontSizeLegendPx, // Aumenta o tamanho da fonte das categorias do eixo x
+                family: "'Arial', sans-serif",
               },
             },
+            grid: {
+              display: false // Desabilita a exibição das linhas da grade do eixo x
+            }
           },
+          y: {
+            ticks: {
+              font: {
+                size: fontSizeLegendPx, // Aumenta o tamanho da fonte dos ticks do eixo y
+                family: "'Arial', sans-serif",
+              },
+            },
+            grid: {
+              color: 'rgba(0, 0, 0, 0.1)', // Define a cor das linhas da grade (opcional)
+            }
+          }
         }
       },
     });
