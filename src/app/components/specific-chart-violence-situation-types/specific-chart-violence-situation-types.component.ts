@@ -41,6 +41,7 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
 
     const fontSizePx = window.innerHeight * (3 / 100); // Converte para pixels
     const fontSizeLegendPx = window.innerHeight * (2 / 100); // Converte para pixels
+    const paddingPx = window.innerHeight * (2 / 100); // Converte para pixels
 
     const labels = this.violenceSituationsTypes.map(item => item.unidade.nome);
 
@@ -129,8 +130,8 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
         maintainAspectRatio: false,
         layout: {
           padding: {
-            left: 20, // Ajustar o preenchimento à esquerda
-            right: 20, // Ajustar o preenchimento à direita
+            left: paddingPx, // Ajustar o preenchimento à esquerda
+            right: paddingPx, // Ajustar o preenchimento à direita
           }
         },
         plugins: {
@@ -140,11 +141,12 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
             align: 'center',
             labels: {
               font: {
-                size: 20, // Tamanho da fonte
+                size: fontSizeLegendPx, // Tamanho da fonte
                 family: "'Arial', sans-serif", // Família da fonte
               },
-              boxWidth: 20,
-              boxPadding: 20
+              padding: paddingPx,
+              boxWidth: fontSizeLegendPx,
+              boxPadding: fontSizeLegendPx
             }
           },
           title: {
@@ -159,9 +161,17 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
             align: 'start',
             padding: {
               top: 0,
-              bottom: 10
+              bottom: paddingPx / 2
             }
           },
+          tooltip: {
+            bodyFont: {
+              size: fontSizePx // Increase the font size for the tooltip
+            },
+            titleFont: {
+              size: fontSizePx // Increase the font size for the tooltip title
+            }
+          }
         },
         scales: {
           x: {
@@ -181,6 +191,7 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
                 size: fontSizeLegendPx, // Aumenta o tamanho da fonte dos ticks do eixo y
                 family: "'Arial', sans-serif",
               },
+              stepSize: 150
             },
             grid: {
               color: 'rgba(0, 0, 0, 0.1)', // Define a cor das linhas da grade (opcional)

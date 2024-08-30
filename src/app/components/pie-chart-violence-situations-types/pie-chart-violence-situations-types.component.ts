@@ -11,7 +11,7 @@ export class PieChartViolenceSituationsTypesComponent implements OnChanges, OnIn
 
   @Input()
   totalOpenViolenceSituations: number = 0.0;
-  totalClosedViolenceSituations: number = 31.0;
+  totalClosedViolenceSituations: number = 307.0;
 
   chart: any;
 
