@@ -11,7 +11,7 @@ body{
 
 .chart-container{
     height: 40vh;
-    margin-top: 3vh;
+    margin-top: 2vh;
 }
 
 .chart{
@@ -27,28 +27,27 @@ body{
 .quantity-chart-container{
     display: flex;
     justify-content: flex-start;
-    height: 13vh;
-    margin-bottom: 2vh;
+    height: 9vh;
+    margin-bottom: 3vh;
 }
 
 .specific-chart-container{
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    height: 20vh;
+    height: 35vh;
+    margin-bottom: 1vh;
 }
 
 .specific-chart{
-    height: 40vh;
-    width: 64vw;
-    margin-top: 4vh;
+    height: 100%;
+    width: 70vw;
+    margin-top: 2vh;
 }
 
 .pie-chart{
     display: flex;
-    height: 38vh;
-    width: 30vw;
-    margin-top: 3vh;
-    margin-left: auto;
     justify-content: center;
+    align-items: center;
+    height: 95%;
+    width: 28vw;
+    margin-top: 2vh;
 }

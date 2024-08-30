@@ -12,7 +12,7 @@
 
 .unit-name{
     font-family: 'Arial', sans-serif;
-    font-size: 2vh;
+    font-size: 1.5vh;
     font-weight: bold;
     padding: 1vh;
 }
@@ -21,8 +21,7 @@
     font-family: 'Arial', sans-serif;
     font-size: 5vh;
     font-weight: bold;
-    padding-left: 1vh;
-    padding-bottom: 1vh;
+    padding: 1vh 1vh 0 1vh;
 }
 
 .description{
