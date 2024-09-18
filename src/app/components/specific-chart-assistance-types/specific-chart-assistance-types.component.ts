@@ -43,7 +43,7 @@ export class SpecificChartAssistanceTypesComponent implements OnChanges, OnInit,
     const fontSizeLegendPx = window.innerHeight * (2 / 100); // Converte para pixels
     const paddingPx = window.innerHeight * (2 / 100); // Converte para pixels
 
-    const labels = this.assistanceTypes.map(item => item.unidade.nome);
+    const labels = this.assistanceTypes.map(item => item.unit.name);
 
     const qtdAtendimentoSocial = this.assistanceTypes.map(item => item.qtdAtendimentoSocial);
     const qtdAtendimentoRecepcao = this.assistanceTypes.map(item => item.qtdAtendimentoRecepcao);

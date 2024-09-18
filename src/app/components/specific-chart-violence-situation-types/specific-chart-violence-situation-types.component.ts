@@ -43,7 +43,7 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
     const fontSizeLegendPx = window.innerHeight * (2 / 100); // Converte para pixels
     const paddingPx = window.innerHeight * (2 / 100); // Converte para pixels
 
-    const labels = this.violenceSituationsTypes.map(item => item.unidade.nome);
+    const labels = this.violenceSituationsTypes.map(item => item.unit.name);
 
     const qtdAtoInfracional = this.violenceSituationsTypes.map(item => item.qtdAtoInfracional);
     const qtdFisica = this.violenceSituationsTypes.map(item => item.qtdFisica);

@@ -1,7 +1,7 @@
 import { Unit } from "./unit";
 
 export interface AssistanceTypes{
-    unidade: Unit;
+    unit: Unit;
     qtdAtendimentoRecepcao: number;
     qtdAtendimentoSocial: number;
     qtdAtendimentoAtualizacaoCadUnico: number;

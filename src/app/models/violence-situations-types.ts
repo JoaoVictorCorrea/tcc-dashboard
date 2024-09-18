@@ -1,7 +1,7 @@
 import { Unit } from "./unit";
 
 export interface ViolenceSituationsTypes{
-    unidade: Unit;
+    unit: Unit;
     qtdFisica: number;
     qtdPsicologica: number;
     qtdAbusoOuViolenciaSexual: number;

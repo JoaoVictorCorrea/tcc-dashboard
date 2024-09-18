@@ -1,164 +1,32 @@
 {
-    "assistance-types":[
-        {
-            "unidade": {
-                "codigo": 1,
-                "nome": "CREAS"
-            },
-            "qtdAtendimentoRecepcao": 221,
-            "qtdAtendimentoSocial": 192,
-            "qtdAtendimentoAtualizacaoCadUnico": 85,
-            "qtdAtendimentoCadastramentoCadUnico": 216,
-            "qtdVisitaDomiciliar": 50
-        },
-        {
-            "unidade": {
-                "codigo": 2,
-                "nome": "CRAS Jardim Santa Cruz"
-            },
-            "qtdAtendimentoRecepcao": 104,
-            "qtdAtendimentoSocial": 61,
-            "qtdAtendimentoAtualizacaoCadUnico": 500,
-            "qtdAtendimentoCadastramentoCadUnico": 98,
-            "qtdVisitaDomiciliar": 250
-        },
-        {
-            "unidade": {
-                "codigo": 3,
-                "nome": "CRAS Jardim das Nações"
-            },
-            "qtdAtendimentoRecepcao": 309,
-            "qtdAtendimentoSocial": 252,
-            "qtdAtendimentoAtualizacaoCadUnico": 150,
-            "qtdAtendimentoCadastramentoCadUnico": 283,
-            "qtdVisitaDomiciliar": 300
-        },
-        {
-            "unidade": {
-                "codigo": 4,
-                "nome": "CRAS Jardim Saltense"
-            },
-            "qtdAtendimentoRecepcao": 54,
-            "qtdAtendimentoSocial": 37,
-            "qtdAtendimentoAtualizacaoCadUnico": 76,
-            "qtdAtendimentoCadastramentoCadUnico": 78,
-            "qtdVisitaDomiciliar": 86
-        },
-        {
-            "unidade": {
-                "codigo": 5,
-                "nome": "CRAS Jardim Independência"
-            },
-            "qtdAtendimentoRecepcao": 206,
-            "qtdAtendimentoSocial": 143,
-            "qtdAtendimentoAtualizacaoCadUnico": 122,
-            "qtdAtendimentoCadastramentoCadUnico": 184,
-            "qtdVisitaDomiciliar": 30
-        },
-        {
-            "unidade": {
-                "codigo": 6,
-                "nome": "CRAS Salto de São José"
-            },
-            "qtdAtendimentoRecepcao": 156,
-            "qtdAtendimentoSocial": 83,
-            "qtdAtendimentoAtualizacaoCadUnico": 70,
-            "qtdAtendimentoCadastramentoCadUnico": 128,
-            "qtdVisitaDomiciliar": 44
-        }
-    ],
-    "violence-situations-types":[
-        {
-            "unidade": {
-                "codigo": 1,
-                "nome": "CREAS"
-            },
-            "qtdFisica": 61,
-            "qtdPsicologica": 43,
-            "qtdAbusoOuViolenciaSexual": 100,
-            "qtdAtoInfracional": 82,
-            "qtdNegligenciaContraCrianca": 57
-        },
-        {
-            "unidade": {
-                "codigo": 2,
-                "nome": "CRAS Jardim Santa Cruz"
-            },
-            "qtdFisica": 27,
-            "qtdPsicologica": 44,
-            "qtdAbusoOuViolenciaSexual": 300,
-            "qtdAtoInfracional": 35,
-            "qtdNegligenciaContraCrianca": 75
-        },
-        {
-            "unidade": {
-                "codigo": 3,
-                "nome": "CRAS Jardim das Nações"
-            },
-            "qtdFisica": 12,
-            "qtdPsicologica": 36,
-            "qtdAbusoOuViolenciaSexual": 521,
-            "qtdAtoInfracional": 58,
-            "qtdNegligenciaContraCrianca": 153
-        },
-        {
-            "unidade": {
-                "codigo": 4,
-                "nome": "CRAS Jardim Saltense"
-            },
-            "qtdFisica": 62,
-            "qtdPsicologica": 42,
-            "qtdAbusoOuViolenciaSexual": 423,
-            "qtdAtoInfracional": 25,
-            "qtdNegligenciaContraCrianca": 222
-        },
-        {
-            "unidade": {
-                "codigo": 5,
-                "nome": "CRAS Jardim Independência"
-            },
-            "qtdFisica": 24,
-            "qtdPsicologica": 52,
-            "qtdAbusoOuViolenciaSexual": 76,
-            "qtdAtoInfracional": 77,
-            "qtdNegligenciaContraCrianca": 98
-        },
-        {
-            "unidade": {
-                "codigo": 6,
-                "nome": "CRAS Salto de São José"
-            },
-            "qtdFisica": 31,
-            "qtdPsicologica": 46,
-            "qtdAbusoOuViolenciaSexual": 123,
-            "qtdAtoInfracional": 64,
-            "qtdNegligenciaContraCrianca": 345
-        }        
-    ],
     "units":[
         {
-            "codigo": 1,
-            "nome": "CREAS"
+            "id": 7,
+            "name": "CREAS"
         },
         {
-            "codigo": 2,
-            "nome": "CRAS Jardim Santa Cruz"
+            "id": 2,
+            "name": "CRAS Jardim Santa Cruz"
         },
         {
-            "codigo": 3,
-            "nome": "CRAS Jardim das Nações"
+            "id": 4,
+            "name": "CRAS Jardim das Nações"
         },
         {
-            "codigo": 4,
-            "nome": "CRAS Jardim Saltense"
+            "id": 5,
+            "name": "CRAS Jardim Saltense"
         },
         {
-            "codigo": 5,
-            "nome": "CRAS Jardim Independência"
+            "id": 3,
+            "name": "CRAS Jardim Independência"
         },
         {
-            "codigo": 6,
-            "nome": "CRAS Salto de São José"
+            "id": 6,
+            "name": "CRAS Salto de São José"
+        },
+        {
+            "id": 10,
+            "name": "Centro POP"
         }
     ]
 }

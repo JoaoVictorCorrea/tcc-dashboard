@@ -44,7 +44,7 @@ export class DashboardPageComponent {
     this.assistanceTypesService.getAssistanceTypes().subscribe({
       next: data => {
         if (unit) {
-          this.assistanceTypes = data.filter(item => item.unidade.codigo === this.selectedUnit.codigo);
+          this.assistanceTypes = data.filter(item => item.unit.id === this.selectedUnit.id);
           this.totalAssistanceTypes = this.sumTotalAssistanceTypes(); 
         }
         else {
@@ -82,7 +82,7 @@ export class DashboardPageComponent {
     this.violenceSituationsTypesService.getViolenceSituationsTypes().subscribe({
       next: data => {
         if (unit) {
-          this.violenceSituationsTypes = data.filter(item => item.unidade.codigo === this.selectedUnit.codigo);
+          this.violenceSituationsTypes = data.filter(item => item.unit.id === this.selectedUnit.id);
           this.totalViolenceSituationsTypes = this.sumTotalViolenceSituationsTypes();
         }
         else {
@@ -96,7 +96,7 @@ export class DashboardPageComponent {
     this.unitService.getUnits().subscribe({
       next: data => {
         // Adiciona a unidade 'fake' no início da lista
-        this.units = [{ codigo: 0, nome: 'Selecione uma Unidade' }, ...data];
+        this.units = [{ id: 0, name: 'Selecione uma Unidade' }, ...data];
         
         // Define a unidade selecionada como a unidade 'fake'
         this.selectedUnit = this.units[0];
@@ -107,7 +107,7 @@ export class DashboardPageComponent {
   onSelectedUnit(unit: Unit) {
     this.selectedUnit = unit;
 
-    if (this.selectedUnit.codigo != 0) {
+    if (this.selectedUnit.id != 0) {
       this.specific = true;
       this.loadChartAssistanceTypes(this.selectedUnit);
       this.loadChartViolenceSituationsTypes(this.selectedUnit);
