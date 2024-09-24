@@ -10,7 +10,7 @@ export class ViolenceSituationsTypesService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl = "https://ikdwdjpnpszynrlss3h7ri5lk40qprlo.lambda-url.us-east-1.on.aws/"
+  baseUrl = "https://a6tg399ay5.execute-api.us-east-1.amazonaws.com/violenceSituationsTypesLambda"
 
   getViolenceSituationsTypes(): Observable<ViolenceSituationsTypes[]>{
 

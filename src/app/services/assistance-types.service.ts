@@ -10,7 +10,7 @@ export class AssistanceTypesService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl = "https://x4edb6qiys6723beimsxshyofm0olgee.lambda-url.us-east-1.on.aws/"
+  baseUrl = "https://a6tg399ay5.execute-api.us-east-1.amazonaws.com/assistanceTypesLambda"
 
   getAssistanceTypes(): Observable<AssistanceTypes[]>{
 
