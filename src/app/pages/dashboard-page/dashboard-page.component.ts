@@ -15,7 +15,8 @@ export class DashboardPageComponent {
 
   units: Unit[] = [];
   selectedUnit: Unit = {} as Unit;
-  years: string[] = ["Geral", "2024", "2023", "2022", "2021", "2020"];
+  years: string[] = [];
+  selectedYear: string = {} as string;
 
   violenceSituationsTypes: ViolenceSituationsTypes[] = [];
   assistanceTypes: AssistanceTypes[] = [];
@@ -36,12 +37,13 @@ export class DashboardPageComponent {
 
   ngOnInit(): void {
     this.loadUnits();
+    this.loadYears();
     this.loadChartAssistanceTypes();
     this.loadChartViolenceSituationsTypes();
   }
 
   loadChartAssistanceTypes(unit?: Unit) {
-    this.assistanceTypesService.getAssistanceTypes().subscribe({
+    this.assistanceTypesService.getAssistanceTypes(this.selectedYear).subscribe({
       next: data => {
         if (unit) {
           this.assistanceTypes = data.filter(item => item.unit.id === this.selectedUnit.id);
@@ -79,7 +81,7 @@ export class DashboardPageComponent {
   }
 
   loadChartViolenceSituationsTypes(unit?: Unit) {
-    this.violenceSituationsTypesService.getViolenceSituationsTypes().subscribe({
+    this.violenceSituationsTypesService.getViolenceSituationsTypes(this.selectedYear).subscribe({
       next: data => {
         if (unit) {
           this.violenceSituationsTypes = data.filter(item => item.unit.id === this.selectedUnit.id);
@@ -104,8 +106,28 @@ export class DashboardPageComponent {
     });
   }
 
+  loadYears() {
+    this.years = ["Geral", "2024", "2023", "2022", "2021", "2020"];
+    this.selectedYear = this.years[0];
+  }
+
   onSelectedUnit(unit: Unit) {
     this.selectedUnit = unit;
+
+    if (this.selectedUnit.id != 0) {
+      this.specific = true;
+      this.loadChartAssistanceTypes(this.selectedUnit);
+      this.loadChartViolenceSituationsTypes(this.selectedUnit);
+    }
+    else {
+      this.specific = false;
+      this.loadChartAssistanceTypes();
+      this.loadChartViolenceSituationsTypes();
+    }
+  }
+
+  onSelectedYear(year: string) {
+    this.selectedYear = year;
 
     if (this.selectedUnit.id != 0) {
       this.specific = true;

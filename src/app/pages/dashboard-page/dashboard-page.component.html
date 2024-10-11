@@ -1,6 +1,6 @@
 <div id="filter">
     <app-filter [units]="units" [selectedUnit]="selectedUnit" (selectedUnitEvent)="onSelectedUnit($event)"
-                [years]="years">
+                [years]="years" [selectedYear]="selectedYear" (selectedYearEvent)="onSelectedYear($event)">
     </app-filter>
 </div>
 <div id="dashboard-geral" *ngIf="!specific">

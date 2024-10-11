@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Unit } from 'src/app/models/unit';
-import { UnitService } from 'src/app/services/unit.service';
 
 @Component({
   selector: 'app-filter',
@@ -13,6 +12,9 @@ export class FilterComponent{
   selectedUnit: Unit = {} as Unit;
 
   @Input()
+  selectedYear: string = {} as string;
+
+  @Input()
   units: Unit[] = [];
 
   @Input()
@@ -21,7 +23,14 @@ export class FilterComponent{
   @Output()
   selectedUnitEvent = new EventEmitter<Unit>();
 
+  @Output()
+  selectedYearEvent = new EventEmitter<string>();
+
   onUnitChanged() {
     this.selectedUnitEvent.emit(this.selectedUnit);
+  }
+
+  onYearChanged() {
+    this.selectedYearEvent.emit(this.selectedYear);
   }
 }
