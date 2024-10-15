@@ -5,6 +5,7 @@ import { ViolenceSituationsTypes } from 'src/app/models/violence-situations-type
 import { AssistanceTypesService } from 'src/app/services/assistance-types.service';
 import { UnitService } from 'src/app/services/unit.service';
 import { ViolenceSituationsTypesService } from 'src/app/services/violence-situations-types.service';
+import { CryptographyService } from 'src/app/services/cryptography.service'
 
 @Component({
   selector: 'app-dashboard-page',
@@ -33,7 +34,8 @@ export class DashboardPageComponent {
 
   constructor(private unitService: UnitService,
               private violenceSituationsTypesService: ViolenceSituationsTypesService,
-              private assistanceTypesService: AssistanceTypesService) { }
+              private assistanceTypesService: AssistanceTypesService,
+              private cryptographyService: CryptographyService) { }
 
   ngOnInit(): void {
     this.loadUnits();
@@ -44,17 +46,34 @@ export class DashboardPageComponent {
 
   loadChartAssistanceTypes(unit?: Unit) {
     this.assistanceTypesService.getAssistanceTypes(this.selectedYear).subscribe({
-      next: data => {
-        if (unit) {
-          this.assistanceTypes = data.filter(item => item.unit.id === this.selectedUnit.id);
-          this.totalAssistanceTypes = this.sumTotalAssistanceTypes(); 
+        next: data => {
+            console.log(data);
+            let decryptedText = this.cryptographyService.decrypt(data);
+            console.log(decryptedText);
+            
+            try {
+                // Converte a string JSON descriptografada em um objeto AssistanceTypes
+                const assistanceTypesArray: AssistanceTypes[] = JSON.parse(decryptedText);
+                
+                // Verifica se a unidade foi passada e filtra os tipos de assistência conforme necessário
+                if (unit) {
+                    this.assistanceTypes = assistanceTypesArray.filter(item => item.unit.id === this.selectedUnit.id);
+                    this.totalAssistanceTypes = this.sumTotalAssistanceTypes(); 
+                } else {
+                    this.assistanceTypes = assistanceTypesArray; // Atribui o array completo
+                }
+                
+            } catch (error) {
+                console.error('Erro ao converter a string em objeto AssistanceTypes', error);
+            }
+        },
+        error: err => {
+            console.error('Erro ao buscar os tipos de assistência', err);
         }
-        else {
-          this.assistanceTypes = data;
-        }
-       }
     });
-  }
+}
+
+
 
   sumTotalViolenceSituationsTypes(): number {
     let sum = 0.0;
@@ -83,16 +102,32 @@ export class DashboardPageComponent {
   loadChartViolenceSituationsTypes(unit?: Unit) {
     this.violenceSituationsTypesService.getViolenceSituationsTypes(this.selectedYear).subscribe({
       next: data => {
-        if (unit) {
-          this.violenceSituationsTypes = data.filter(item => item.unit.id === this.selectedUnit.id);
-          this.totalViolenceSituationsTypes = this.sumTotalViolenceSituationsTypes();
+
+            console.log(data);
+            let decryptedText = this.cryptographyService.decrypt(data);
+            console.log(decryptedText);
+            
+            try {
+                // Converte a string JSON descriptografada em um objeto AssistanceTypes
+                const violenceSituationsTypesArray: ViolenceSituationsTypes[] = JSON.parse(decryptedText);
+                
+                // Verifica se a unidade foi passada e filtra os tipos de assistência conforme necessário
+                if (unit) {
+                    this.violenceSituationsTypes = violenceSituationsTypesArray.filter(item => item.unit.id === this.selectedUnit.id);
+                    this.totalViolenceSituationsTypes = this.sumTotalViolenceSituationsTypes(); 
+                } else {
+                    this.violenceSituationsTypes = violenceSituationsTypesArray; // Atribui o array completo
+                }
+                
+            } catch (error) {
+                console.error('Erro ao converter a string em objeto AssistanceTypes', error);
+            }
+        },
+        error: err => {
+            console.error('Erro ao buscar os tipos de assistência', err);
         }
-        else {
-          this.violenceSituationsTypes = data;
-        }
-       }
     });
-  }
+}
 
   loadUnits() {
     this.unitService.getUnits().subscribe({

@@ -12,9 +12,9 @@ export class AssistanceTypesService {
 
   baseUrl = "https://pvmgu2uv58.execute-api.us-east-1.amazonaws.com/AssistanceTypesLambda"
 
-  getAssistanceTypes(year: string): Observable<AssistanceTypes[]> {
+  getAssistanceTypes(year: string): Observable<string> {
     const url = year !== 'Geral' ? `${this.baseUrl}?year=${year}` : this.baseUrl;
-    return this.http.get<AssistanceTypes[]>(url);
+    return this.http.get(url, { responseType: 'text' });
   }
   
 }

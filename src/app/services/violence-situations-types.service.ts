@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ViolenceSituationsTypes } from '../models/violence-situations-types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,8 +11,8 @@ export class ViolenceSituationsTypesService {
 
   baseUrl = "https://pvmgu2uv58.execute-api.us-east-1.amazonaws.com/ViolenceSituationTypesLambda"
 
-  getViolenceSituationsTypes(year: string): Observable<ViolenceSituationsTypes[]>{
+  getViolenceSituationsTypes(year: string): Observable<string>{
     const url = year !== 'Geral' ? `${this.baseUrl}?year=${year}` : this.baseUrl;
-    return this.http.get<ViolenceSituationsTypes[]>(url);
+    return this.http.get(url, { responseType: 'text' });
   }
 }
