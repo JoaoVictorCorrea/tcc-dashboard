@@ -29,7 +29,7 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['selectedUnit']) {
+    if (changes['selectedUnit'] || changes['violenceSituationsTypes']) {
       this.createChart();
     }
   }

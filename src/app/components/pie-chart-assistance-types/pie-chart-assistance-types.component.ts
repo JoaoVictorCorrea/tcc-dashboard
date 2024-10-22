@@ -36,7 +36,7 @@ export class PieChartAssistanceTypesComponent implements OnChanges, OnInit, OnDe
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['selectedUnit']) {
+    if (changes['selectedUnit'] || changes['assistanceTypes']) {
       this.sumTotalAssistanceTypes();
       this.createChart();
     }

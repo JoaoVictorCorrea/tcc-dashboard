@@ -29,7 +29,7 @@ export class SpecificChartAssistanceTypesComponent implements OnChanges, OnInit,
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['selectedUnit']) {
+    if (changes['selectedUnit'] || changes['assistanceTypes']) {
       this.createChart();
     }
   }

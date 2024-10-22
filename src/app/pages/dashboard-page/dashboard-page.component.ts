@@ -146,11 +146,13 @@ export class DashboardPageComponent {
 
     if (this.selectedUnit.id != 0) {
       this.specific = true;
+
       this.totalAssistanceTypes = this.sumTotalAssistanceTypes();
       this.totalViolenceSituationsTypes = this.sumTotalViolenceSituationsTypes();
     }
     else {
       this.specific = false;
+
       this.loadChartAssistanceTypes();
       this.loadChartViolenceSituationsTypes();
     }
@@ -161,11 +163,16 @@ export class DashboardPageComponent {
 
     if (this.selectedUnit.id != 0) {
       this.specific = true;
+
       this.loadChartAssistanceTypes();
       this.loadChartViolenceSituationsTypes();
+
+      this.totalAssistanceTypes = this.sumTotalAssistanceTypes();
+      this.totalViolenceSituationsTypes = this.sumTotalViolenceSituationsTypes();
     }
     else {
       this.specific = false;
+      
       this.loadChartAssistanceTypes();
       this.loadChartViolenceSituationsTypes();
     }
