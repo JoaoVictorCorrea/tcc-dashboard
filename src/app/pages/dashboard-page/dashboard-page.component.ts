@@ -44,24 +44,27 @@ export class DashboardPageComponent {
     this.loadChartViolenceSituationsTypes();
   }
 
-  loadChartAssistanceTypes() {
-    this.assistanceTypesService.getAssistanceTypes(this.selectedYear).subscribe({
+  loadChartAssistanceTypes(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.assistanceTypesService.getAssistanceTypes(this.selectedYear).subscribe({
         next: data => {
-
-            let decryptedData = this.cryptographyService.decrypt(data);
-            
-            try {
-                // Converte a string JSON descriptografada em um objeto AssistanceTypes
-                const assistanceTypesArray: AssistanceTypes[] = JSON.parse(decryptedData);
-                this.assistanceTypes = assistanceTypesArray; // Atribui o array completo
-                
-            } catch (error) {
-                console.error('Erro ao converter a string em objeto AssistanceTypes', error);
-            }
+          let decryptedData = this.cryptographyService.decrypt(data);
+          
+          try {
+            // Converte a string JSON descriptografada em um objeto AssistanceTypes
+            const assistanceTypesArray: AssistanceTypes[] = JSON.parse(decryptedData);
+            this.assistanceTypes = assistanceTypesArray; // Atribui o array completo
+            resolve(); // Resolve a Promise quando os dados forem carregados
+          } catch (error) {
+            console.error('Erro ao converter a string em objeto AssistanceTypes', error);
+            reject(error); // Rejeita a Promise em caso de erro
+          }
         },
         error: err => {
-            console.error('Erro ao buscar os tipos de assistência', err);
+          console.error('Erro ao buscar os tipos de assistência', err);
+          reject(err); // Rejeita a Promise em caso de erro na requisição
         }
+      });
     });
   }
 
@@ -93,24 +96,28 @@ export class DashboardPageComponent {
     return sum;
   }
 
-  loadChartViolenceSituationsTypes() {
-    this.violenceSituationsTypesService.getViolenceSituationsTypes(this.selectedYear).subscribe({
-      next: data => {
-
-            let decryptedData = this.cryptographyService.decrypt(data);
-            
-            try {
-                // Converte a string JSON descriptografada em um objeto ViolenceSituationsTypes
-                const violenceSituationsTypesArray: ViolenceSituationsTypes[] = JSON.parse(decryptedData);
-                this.violenceSituationsTypes = violenceSituationsTypesArray; // Atribui o array completo 
+  loadChartViolenceSituationsTypes(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.violenceSituationsTypesService.getViolenceSituationsTypes(this.selectedYear).subscribe({
+        next: data => {
+  
+              let decryptedData = this.cryptographyService.decrypt(data);
               
-            } catch (error) {
+              try {
+                  // Converte a string JSON descriptografada em um objeto ViolenceSituationsTypes
+                  const violenceSituationsTypesArray: ViolenceSituationsTypes[] = JSON.parse(decryptedData);
+                  this.violenceSituationsTypes = violenceSituationsTypesArray; // Atribui o array completo 
+                  resolve(); // Resolve a Promise quando os dados forem carregados
+              } catch (error) {
                 console.error('Erro ao converter a string em objeto ViolenceSituationsTypes', error);
-            }
-        },
-        error: err => {
+                reject(error); // Rejeita a Promise em caso de erro
+              }
+          },
+          error: err => {
             console.error('Erro ao buscar os tipos de violência', err);
-        }
+            reject(err); // Rejeita a Promise em caso de erro na requisição
+          }
+      });
     });
   }
 
@@ -164,15 +171,15 @@ export class DashboardPageComponent {
     if (this.selectedUnit.id != 0) {
       this.specific = true;
 
-      this.loadChartAssistanceTypes();
-      this.loadChartViolenceSituationsTypes();
-
-      this.totalAssistanceTypes = this.sumTotalAssistanceTypes();
-      this.totalViolenceSituationsTypes = this.sumTotalViolenceSituationsTypes();
+      Promise.all([this.loadChartAssistanceTypes(), this.loadChartViolenceSituationsTypes()])
+        .then(() => {
+          this.totalAssistanceTypes = this.sumTotalAssistanceTypes();
+          this.totalViolenceSituationsTypes = this.sumTotalViolenceSituationsTypes();
+        });
     }
     else {
       this.specific = false;
-      
+
       this.loadChartAssistanceTypes();
       this.loadChartViolenceSituationsTypes();
     }
