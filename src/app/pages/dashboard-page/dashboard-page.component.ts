@@ -44,7 +44,7 @@ export class DashboardPageComponent {
     this.loadChartViolenceSituationsTypes();
   }
 
-  loadChartAssistanceTypes(unit?: Unit) {
+  loadChartAssistanceTypes() {
     this.assistanceTypesService.getAssistanceTypes(this.selectedYear).subscribe({
         next: data => {
 
@@ -53,14 +53,7 @@ export class DashboardPageComponent {
             try {
                 // Converte a string JSON descriptografada em um objeto AssistanceTypes
                 const assistanceTypesArray: AssistanceTypes[] = JSON.parse(decryptedData);
-                
-                // Verifica se a unidade foi passada e filtra os tipos de assistência conforme necessário
-                if (unit) {
-                    this.assistanceTypes = assistanceTypesArray.filter(item => item.unit.id === this.selectedUnit.id);
-                    this.totalAssistanceTypes = this.sumTotalAssistanceTypes(); 
-                } else {
-                    this.assistanceTypes = assistanceTypesArray; // Atribui o array completo
-                }
+                this.assistanceTypes = assistanceTypesArray; // Atribui o array completo
                 
             } catch (error) {
                 console.error('Erro ao converter a string em objeto AssistanceTypes', error);
@@ -73,30 +66,34 @@ export class DashboardPageComponent {
   }
 
   sumTotalViolenceSituationsTypes(): number {
+    const filterViolenceSituationsTypes = this.violenceSituationsTypes.filter(item => item.unit.id === this.selectedUnit.id); //filtro apenas com a unidade selecionada
+
     let sum = 0.0;
 
-    sum += this.violenceSituationsTypes.reduce((sum, item) => sum + item.qtdAbusoOuViolenciaSexual, 0);
-    sum += this.violenceSituationsTypes.reduce((sum, item) => sum + item.qtdAtoInfracional, 0);
-    sum += this.violenceSituationsTypes.reduce((sum, item) => sum + item.qtdFisica, 0);
-    sum += this.violenceSituationsTypes.reduce((sum, item) => sum + item.qtdNegligenciaContraCrianca, 0);
-    sum += this.violenceSituationsTypes.reduce((sum, item) => sum + item.qtdPsicologica, 0);
+    sum += filterViolenceSituationsTypes.reduce((sum, item) => sum + item.qtdAbusoOuViolenciaSexual, 0);
+    sum += filterViolenceSituationsTypes.reduce((sum, item) => sum + item.qtdAtoInfracional, 0);
+    sum += filterViolenceSituationsTypes.reduce((sum, item) => sum + item.qtdFisica, 0);
+    sum += filterViolenceSituationsTypes.reduce((sum, item) => sum + item.qtdNegligenciaContraCrianca, 0);
+    sum += filterViolenceSituationsTypes.reduce((sum, item) => sum + item.qtdPsicologica, 0);
 
     return sum;
   }
 
   sumTotalAssistanceTypes(): number {
+    const filterAssistanceTypes = this.assistanceTypes.filter(item => item.unit.id === this.selectedUnit.id); //filtro apenas com a unidade selecionada
+    
     let sum = 0.0;
 
-    sum += this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoAtualizacaoCadUnico, 0);
-    sum += this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoCadastramentoCadUnico, 0);
-    sum += this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoRecepcao, 0);
-    sum += this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoSocial, 0);
-    sum += this.assistanceTypes.reduce((sum, item) => sum + item.qtdVisitaDomiciliar, 0);
+    sum += filterAssistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoAtualizacaoCadUnico, 0);
+    sum += filterAssistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoCadastramentoCadUnico, 0);
+    sum += filterAssistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoRecepcao, 0);
+    sum += filterAssistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoSocial, 0);
+    sum += filterAssistanceTypes.reduce((sum, item) => sum + item.qtdVisitaDomiciliar, 0);
 
     return sum;
   }
 
-  loadChartViolenceSituationsTypes(unit?: Unit) {
+  loadChartViolenceSituationsTypes() {
     this.violenceSituationsTypesService.getViolenceSituationsTypes(this.selectedYear).subscribe({
       next: data => {
 
@@ -105,15 +102,8 @@ export class DashboardPageComponent {
             try {
                 // Converte a string JSON descriptografada em um objeto ViolenceSituationsTypes
                 const violenceSituationsTypesArray: ViolenceSituationsTypes[] = JSON.parse(decryptedData);
-                
-                // Verifica se a unidade foi passada e filtra os tipos de assistência conforme necessário
-                if (unit) {
-                    this.violenceSituationsTypes = violenceSituationsTypesArray.filter(item => item.unit.id === this.selectedUnit.id);
-                    this.totalViolenceSituationsTypes = this.sumTotalViolenceSituationsTypes(); 
-                } else {
-                    this.violenceSituationsTypes = violenceSituationsTypesArray; // Atribui o array completo
-                }
-                
+                this.violenceSituationsTypes = violenceSituationsTypesArray; // Atribui o array completo 
+              
             } catch (error) {
                 console.error('Erro ao converter a string em objeto ViolenceSituationsTypes', error);
             }
@@ -156,8 +146,8 @@ export class DashboardPageComponent {
 
     if (this.selectedUnit.id != 0) {
       this.specific = true;
-      this.loadChartAssistanceTypes(this.selectedUnit);
-      this.loadChartViolenceSituationsTypes(this.selectedUnit);
+      this.totalAssistanceTypes = this.sumTotalAssistanceTypes();
+      this.totalViolenceSituationsTypes = this.sumTotalViolenceSituationsTypes();
     }
     else {
       this.specific = false;
@@ -171,8 +161,8 @@ export class DashboardPageComponent {
 
     if (this.selectedUnit.id != 0) {
       this.specific = true;
-      this.loadChartAssistanceTypes(this.selectedUnit);
-      this.loadChartViolenceSituationsTypes(this.selectedUnit);
+      this.loadChartAssistanceTypes();
+      this.loadChartViolenceSituationsTypes();
     }
     else {
       this.specific = false;

@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+import { Unit } from 'src/app/models/unit';
 import { ViolenceSituationsTypes } from 'src/app/models/violence-situations-types';
 
 @Component({
@@ -14,6 +15,9 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
   @Input()
   violenceSituationsTypes: ViolenceSituationsTypes[] = [];
 
+  @Input()
+  selectedUnit: Unit = {} as Unit;
+
   ngOnInit(): void {
     // Adiciona o ouvinte para redimensionamento da janela
     window.addEventListener('resize', this.onResize.bind(this));
@@ -25,7 +29,7 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['violenceSituationsTypes']) {
+    if (changes['selectedUnit']) {
       this.createChart();
     }
   }
@@ -43,13 +47,14 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
     const fontSizeLegendPx = window.innerHeight * (2 / 100); // Converte para pixels
     const paddingPx = window.innerHeight * (2 / 100); // Converte para pixels
 
-    const labels = this.violenceSituationsTypes.map(item => item.unit.name);
+    const filterViolenceSituationsTypes = this.violenceSituationsTypes.filter(item => item.unit.id === this.selectedUnit.id); //filtro apenas com a unidade selecionada
+    const labels = filterViolenceSituationsTypes.map(item => item.unit.name);
 
-    const qtdAtoInfracional = this.violenceSituationsTypes.map(item => item.qtdAtoInfracional);
-    const qtdFisica = this.violenceSituationsTypes.map(item => item.qtdFisica);
-    const qtdPsicologica = this.violenceSituationsTypes.map(item => item.qtdPsicologica);
-    const qtdSexual = this.violenceSituationsTypes.map(item => item.qtdAbusoOuViolenciaSexual);
-    const qtdNegligenciaContraCrianca = this.violenceSituationsTypes.map(item => item.qtdNegligenciaContraCrianca);
+    const qtdAtoInfracional = filterViolenceSituationsTypes.map(item => item.qtdAtoInfracional);
+    const qtdFisica = filterViolenceSituationsTypes.map(item => item.qtdFisica);
+    const qtdPsicologica = filterViolenceSituationsTypes.map(item => item.qtdPsicologica);
+    const qtdSexual = filterViolenceSituationsTypes.map(item => item.qtdAbusoOuViolenciaSexual);
+    const qtdNegligenciaContraCrianca = filterViolenceSituationsTypes.map(item => item.qtdNegligenciaContraCrianca);
   
     this.chart = new Chart("SpecificChartViolenceSituationsTypes", {
       type: 'bar', //this denotes tha type of chart

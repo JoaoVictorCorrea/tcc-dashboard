@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@
 import { Chart } from 'chart.js/auto';
 import { AssistanceTypes } from 'src/app/models/assistance-types';
 import datalabels from 'chartjs-plugin-datalabels'; // Importa o plugin datalabels
+import { Unit } from 'src/app/models/unit';
 
 @Component({
   selector: 'app-pie-chart-assistance-types',
@@ -12,6 +13,9 @@ export class PieChartAssistanceTypesComponent implements OnChanges, OnInit, OnDe
 
   @Input()
   assistanceTypes: AssistanceTypes[] = [];
+
+  @Input()
+  selectedUnit: Unit = {} as Unit;
 
   totalSocial: number = 0.0;
   totalRecepcao: number = 0.0;
@@ -32,7 +36,7 @@ export class PieChartAssistanceTypesComponent implements OnChanges, OnInit, OnDe
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['assistanceTypes']) {
+    if (changes['selectedUnit']) {
       this.sumTotalAssistanceTypes();
       this.createChart();
     }
@@ -43,11 +47,13 @@ export class PieChartAssistanceTypesComponent implements OnChanges, OnInit, OnDe
   }
 
   sumTotalAssistanceTypes() {
-    this.totalSocial = this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoSocial, 0);
-    this.totalRecepcao = this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoRecepcao, 0);
-    this.totalCadastroCadUnico = this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoCadastramentoCadUnico, 0);
-    this.totalAtualizacaoCadUnico = this.assistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoAtualizacaoCadUnico, 0);
-    this.totalVisitaDomiciliar = this.assistanceTypes.reduce((sum, item) => sum + item.qtdVisitaDomiciliar, 0);
+    const filterAssistanceTypes = this.assistanceTypes.filter(item => item.unit.id === this.selectedUnit.id); //filtro apenas com a unidade selecionada
+
+    this.totalSocial = filterAssistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoSocial, 0);
+    this.totalRecepcao = filterAssistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoRecepcao, 0);
+    this.totalCadastroCadUnico = filterAssistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoCadastramentoCadUnico, 0);
+    this.totalAtualizacaoCadUnico = filterAssistanceTypes.reduce((sum, item) => sum + item.qtdAtendimentoAtualizacaoCadUnico, 0);
+    this.totalVisitaDomiciliar = filterAssistanceTypes.reduce((sum, item) => sum + item.qtdVisitaDomiciliar, 0);
   }
 
   createChart() {

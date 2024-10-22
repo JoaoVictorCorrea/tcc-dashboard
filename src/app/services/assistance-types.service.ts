@@ -16,5 +16,4 @@ export class AssistanceTypesService {
     const url = year !== 'Geral' ? `${this.baseUrl}?year=${year}` : this.baseUrl;
     return this.http.get(url, { responseType: 'text' });
   }
-  
 }

@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { AssistanceTypes } from 'src/app/models/assistance-types';
+import { Unit } from 'src/app/models/unit';
 
 @Component({
   selector: 'app-specific-chart-assistance-types',
@@ -14,6 +15,9 @@ export class SpecificChartAssistanceTypesComponent implements OnChanges, OnInit,
   @Input()
   assistanceTypes: AssistanceTypes[] = [];
 
+  @Input()
+  selectedUnit: Unit = {} as Unit;
+
   ngOnInit(): void {
     // Adiciona o ouvinte para redimensionamento da janela
     window.addEventListener('resize', this.onResize.bind(this));
@@ -25,7 +29,7 @@ export class SpecificChartAssistanceTypesComponent implements OnChanges, OnInit,
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['assistanceTypes']) {
+    if (changes['selectedUnit']) {
       this.createChart();
     }
   }
@@ -43,13 +47,14 @@ export class SpecificChartAssistanceTypesComponent implements OnChanges, OnInit,
     const fontSizeLegendPx = window.innerHeight * (2 / 100); // Converte para pixels
     const paddingPx = window.innerHeight * (2 / 100); // Converte para pixels
 
-    const labels = this.assistanceTypes.map(item => item.unit.name);
+    const filterAssistanceTypes = this.assistanceTypes.filter(item => item.unit.id === this.selectedUnit.id); //filtro apenas com a unidade selecionada
+    const labels = filterAssistanceTypes.map(item => item.unit.name);
 
-    const qtdAtendimentoSocial = this.assistanceTypes.map(item => item.qtdAtendimentoSocial);
-    const qtdAtendimentoRecepcao = this.assistanceTypes.map(item => item.qtdAtendimentoRecepcao);
-    const qtdAtendimentoCadastramentoCadUnico = this.assistanceTypes.map(item => item.qtdAtendimentoCadastramentoCadUnico);
-    const qtdAtendimentoAtualizacaoCadUnico = this.assistanceTypes.map(item => item.qtdAtendimentoAtualizacaoCadUnico);
-    const qtdAtendimentoVisitaDomiciliar = this.assistanceTypes.map(item => item.qtdVisitaDomiciliar);
+    const qtdAtendimentoSocial = filterAssistanceTypes.map(item => item.qtdAtendimentoSocial);
+    const qtdAtendimentoRecepcao = filterAssistanceTypes.map(item => item.qtdAtendimentoRecepcao);
+    const qtdAtendimentoCadastramentoCadUnico = filterAssistanceTypes.map(item => item.qtdAtendimentoCadastramentoCadUnico);
+    const qtdAtendimentoAtualizacaoCadUnico = filterAssistanceTypes.map(item => item.qtdAtendimentoAtualizacaoCadUnico);
+    const qtdAtendimentoVisitaDomiciliar = filterAssistanceTypes.map(item => item.qtdVisitaDomiciliar);
   
     this.chart = new Chart("SpecificChartAssistanceTypes", {
       type: 'bar', //this denotes tha type of chart

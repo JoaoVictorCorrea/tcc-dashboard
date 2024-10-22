@@ -13,11 +13,17 @@
         <app-quantity-chart [total]="totalViolenceSituationsTypes" [description]="descriptionViolenceSituationsTypes"></app-quantity-chart>
     </div>
     <div class="specific-chart-container">
-        <app-specific-chart-assistance-types [assistanceTypes]="assistanceTypes"></app-specific-chart-assistance-types>
-        <app-pie-chart-assistance-types [assistanceTypes]="assistanceTypes"></app-pie-chart-assistance-types>
+        <app-specific-chart-assistance-types [assistanceTypes]="assistanceTypes"
+                                             [selectedUnit]="selectedUnit">
+        </app-specific-chart-assistance-types>
+        <app-pie-chart-assistance-types [assistanceTypes]="assistanceTypes"
+                                        [selectedUnit]="selectedUnit">
+        </app-pie-chart-assistance-types>
     </div>
     <div class="specific-chart-container">
-        <app-specific-chart-violence-situation-types [violenceSituationsTypes]="violenceSituationsTypes"></app-specific-chart-violence-situation-types>
+        <app-specific-chart-violence-situation-types [violenceSituationsTypes]="violenceSituationsTypes"
+                                                     [selectedUnit]="selectedUnit">
+        </app-specific-chart-violence-situation-types>
         <app-pie-chart-violence-situations-types [totalOpenViolenceSituations]="totalOpenViolenceSituations"></app-pie-chart-violence-situations-types>
     </div>
 </div>
