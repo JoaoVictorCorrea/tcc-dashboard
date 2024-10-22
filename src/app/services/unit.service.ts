@@ -10,10 +10,10 @@ export class UnitService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl = "http://localhost:3000/units"
+  baseUrl = "https://pvmgu2uv58.execute-api.us-east-1.amazonaws.com/UnitsLambda"
 
-  getUnits(): Observable<Unit[]>{
+  getUnits(): Observable<string>{
 
-    return this.http.get<Unit[]>(this.baseUrl);
+    return this.http.get(this.baseUrl, { responseType: 'text' });
   }
 }

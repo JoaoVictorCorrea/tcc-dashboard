@@ -47,13 +47,12 @@ export class DashboardPageComponent {
   loadChartAssistanceTypes(unit?: Unit) {
     this.assistanceTypesService.getAssistanceTypes(this.selectedYear).subscribe({
         next: data => {
-            console.log(data);
-            let decryptedText = this.cryptographyService.decrypt(data);
-            console.log(decryptedText);
+
+            let decryptedData = this.cryptographyService.decrypt(data);
             
             try {
                 // Converte a string JSON descriptografada em um objeto AssistanceTypes
-                const assistanceTypesArray: AssistanceTypes[] = JSON.parse(decryptedText);
+                const assistanceTypesArray: AssistanceTypes[] = JSON.parse(decryptedData);
                 
                 // Verifica se a unidade foi passada e filtra os tipos de assistência conforme necessário
                 if (unit) {
@@ -71,9 +70,7 @@ export class DashboardPageComponent {
             console.error('Erro ao buscar os tipos de assistência', err);
         }
     });
-}
-
-
+  }
 
   sumTotalViolenceSituationsTypes(): number {
     let sum = 0.0;
@@ -103,13 +100,11 @@ export class DashboardPageComponent {
     this.violenceSituationsTypesService.getViolenceSituationsTypes(this.selectedYear).subscribe({
       next: data => {
 
-            console.log(data);
-            let decryptedText = this.cryptographyService.decrypt(data);
-            console.log(decryptedText);
+            let decryptedData = this.cryptographyService.decrypt(data);
             
             try {
-                // Converte a string JSON descriptografada em um objeto AssistanceTypes
-                const violenceSituationsTypesArray: ViolenceSituationsTypes[] = JSON.parse(decryptedText);
+                // Converte a string JSON descriptografada em um objeto ViolenceSituationsTypes
+                const violenceSituationsTypesArray: ViolenceSituationsTypes[] = JSON.parse(decryptedData);
                 
                 // Verifica se a unidade foi passada e filtra os tipos de assistência conforme necessário
                 if (unit) {
@@ -120,24 +115,34 @@ export class DashboardPageComponent {
                 }
                 
             } catch (error) {
-                console.error('Erro ao converter a string em objeto AssistanceTypes', error);
+                console.error('Erro ao converter a string em objeto ViolenceSituationsTypes', error);
             }
         },
         error: err => {
-            console.error('Erro ao buscar os tipos de assistência', err);
+            console.error('Erro ao buscar os tipos de violência', err);
         }
     });
-}
+  }
 
   loadUnits() {
     this.unitService.getUnits().subscribe({
       next: data => {
-        // Adiciona a unidade 'fake' no início da lista
-        this.units = [{ id: 0, name: 'Selecione uma Unidade' }, ...data];
+
+        let decryptedData = this.cryptographyService.decrypt(data);
         
-        // Define a unidade selecionada como a unidade 'fake'
-        this.selectedUnit = this.units[0];
-       }
+        try {
+          const unitsArray: Unit[] = JSON.parse(decryptedData);
+          
+          // Adiciona a unidade 'fake' no início da lista
+          this.units = [{ id: 0, name: 'Selecione uma Unidade' }, ...unitsArray];
+        
+          // Define a unidade selecionada como a unidade 'fake'
+          this.selectedUnit = this.units[0];
+          
+        } catch (error) {
+            console.error('Erro ao converter a string em objeto Unit', error);
+        } 
+      }
     });
   }
 
