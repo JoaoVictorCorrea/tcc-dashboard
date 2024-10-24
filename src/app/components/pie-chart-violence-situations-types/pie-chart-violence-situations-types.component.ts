@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import datalabels from 'chartjs-plugin-datalabels'; // Importa o plugin datalabels
+import { Unit } from 'src/app/models/unit';
+import { ViolenceSituationsTypes } from 'src/app/models/violence-situations-types';
 
 @Component({
   selector: 'app-pie-chart-violence-situations-types',
@@ -10,8 +12,13 @@ import datalabels from 'chartjs-plugin-datalabels'; // Importa o plugin datalabe
 export class PieChartViolenceSituationsTypesComponent implements OnChanges, OnInit, OnDestroy{
 
   @Input()
+  violenceSituationsTypes: ViolenceSituationsTypes[] = [];
+
+  @Input()
+  selectedUnit: Unit = {} as Unit;
+
   totalOpenViolenceSituations: number = 0.0;
-  totalClosedViolenceSituations: number = 307.0;
+  totalClosedViolenceSituations: number = 0.0;
 
   chart: any;
 
@@ -26,7 +33,7 @@ export class PieChartViolenceSituationsTypesComponent implements OnChanges, OnIn
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['totalOpenViolenceSituations']) {
+    if (changes['selectedUnit'] || changes['violenceSituationsTypes']) {
       this.createChart();
     }
   }
@@ -39,6 +46,11 @@ export class PieChartViolenceSituationsTypesComponent implements OnChanges, OnIn
     if (this.chart) {
       this.chart.destroy(); // Destroy the previous chart, if it exists, to avoid overlap
     }
+
+    const filterViolenceSituationsTypes = this.violenceSituationsTypes.filter(item => item.unit.id === this.selectedUnit.id);
+
+    this.totalOpenViolenceSituations = filterViolenceSituationsTypes[0].qtdOpen;
+    this.totalClosedViolenceSituations = filterViolenceSituationsTypes[0].qtdClosed;
 
     const fontSizePx = window.innerHeight * (3 / 100); // Converte para pixels
     const fontSizeLegendPx = window.innerHeight * (3.5 / 100); // Converte para pixels

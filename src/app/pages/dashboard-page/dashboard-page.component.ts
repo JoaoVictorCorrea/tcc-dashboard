@@ -25,8 +25,6 @@ export class DashboardPageComponent {
   totalAssistanceTypes: number = 0.0;
   totalViolenceSituationsTypes: number = 0.0;
 
-  totalOpenViolenceSituations: number = 36.0;
-
   descriptionAssistanceTypes: string = 'atendimentos';
   descriptionViolenceSituationsTypes: string = 'situações de violência';
 

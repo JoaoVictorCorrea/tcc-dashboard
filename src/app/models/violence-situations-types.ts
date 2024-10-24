@@ -7,4 +7,6 @@ export interface ViolenceSituationsTypes{
     qtdAbusoOuViolenciaSexual: number;
     qtdAtoInfracional: number;
     qtdNegligenciaContraCrianca: number;
+    qtdOpen: number;
+    qtdClosed: number;
 }
