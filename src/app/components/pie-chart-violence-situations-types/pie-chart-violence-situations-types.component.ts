@@ -20,6 +20,8 @@ export class PieChartViolenceSituationsTypesComponent implements OnChanges, OnIn
   totalOpenViolenceSituations: number = 0.0;
   totalClosedViolenceSituations: number = 0.0;
 
+  hasData: boolean = true;
+
   chart: any;
 
   ngOnInit(): void {
@@ -56,52 +58,77 @@ export class PieChartViolenceSituationsTypesComponent implements OnChanges, OnIn
     const fontSizeLegendPx = window.innerHeight * (3.5 / 100); // Converte para pixels
   
     const labels = ['Abertas', 'Encerradas'];
-  
-    this.chart = new Chart("PieChartViolenceSituationsTypes", {
-      type: 'pie', // Specifies the type of chart
-  
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            data: [this.totalOpenViolenceSituations, this.totalClosedViolenceSituations],
-            backgroundColor: ['#FF5555', '#C0C0C0'],
-          }
-        ]
-      },
-      options: {
-        responsive: true, // Torna o gráfico responsivo
-        maintainAspectRatio: false, // Permite que o gráfico ajuste a altura automaticamente
-        plugins: {
-          datalabels: {
-            color: 'white',
-            formatter: (value) => value, // Exibe o valor no centro da fatia
-            font: {
-              weight: 'bold',
-              size: fontSizePx
-            },
-            anchor: 'center',
-            align: 'center'
-          },
-          legend: {
-            position: 'right', // Posiciona a legenda à direita
-            labels: {
+
+    const chartElement = document.getElementById('PieChartViolenceSituationsTypes');
+
+    if (chartElement) {
+
+      // Chamar o método para verificar os dados e controlar a visibilidade
+      this.checkChartDataVisibility(chartElement);
+
+      if (!this.hasData) {
+        return;
+      }
+
+      this.chart = new Chart("PieChartViolenceSituationsTypes", {
+        type: 'pie', // Specifies the type of chart
+    
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              data: [this.totalOpenViolenceSituations, this.totalClosedViolenceSituations],
+              backgroundColor: ['#FF5555', '#C0C0C0'],
+            }
+          ]
+        },
+        options: {
+          responsive: true, // Torna o gráfico responsivo
+          maintainAspectRatio: false, // Permite que o gráfico ajuste a altura automaticamente
+          plugins: {
+            datalabels: {
+              color: 'white',
+              formatter: (value) => value, // Exibe o valor no centro da fatia
               font: {
-                size: fontSizeLegendPx // Increase the font size for the legend labels
+                weight: 'bold',
+                size: fontSizePx
+              },
+              anchor: 'center',
+              align: 'center'
+            },
+            legend: {
+              position: 'right', // Posiciona a legenda à direita
+              labels: {
+                font: {
+                  size: fontSizeLegendPx // Increase the font size for the legend labels
+                }
+              }
+            },
+            tooltip: {
+              bodyFont: {
+                size: fontSizePx // Increase the font size for the tooltip
+              },
+              titleFont: {
+                size: fontSizePx // Increase the font size for the tooltip title
               }
             }
-          },
-          tooltip: {
-            bodyFont: {
-              size: fontSizePx // Increase the font size for the tooltip
-            },
-            titleFont: {
-              size: fontSizePx // Increase the font size for the tooltip title
-            }
           }
-        }
-      },
-      plugins: [datalabels] // Registra o plugin datalabels
-    });
-  } 
+        },
+        plugins: [datalabels] // Registra o plugin datalabels
+      });
+    }
+  }
+
+  checkChartDataVisibility(chartElement: HTMLElement): void {
+    // Verificar se o elemento do gráfico existe e se todos os valores são iguais a zero
+    if (chartElement && this.totalClosedViolenceSituations === 0 && this.totalOpenViolenceSituations === 0){
+      
+      chartElement.style.display = 'none';
+      this.hasData = false;
+    } else if (chartElement) {
+      
+      chartElement.style.display = 'block';
+      this.hasData = true;
+    }
+  }
 }

@@ -23,6 +23,8 @@ export class PieChartAssistanceTypesComponent implements OnChanges, OnInit, OnDe
   totalAtualizacaoCadUnico: number = 0.0;
   totalVisitaDomiciliar: number = 0.0;
 
+  hasData: boolean = true;
+
   chart: any;
 
   ngOnInit(): void {
@@ -65,52 +67,78 @@ export class PieChartAssistanceTypesComponent implements OnChanges, OnInit, OnDe
     const fontSizeLegendPx = window.innerHeight * (2 / 100); // Converte para pixels
   
     const labels = ['Atendimento Social', 'Atendimento Recepção', 'Cadastro CadUnico', 'Atualização CadUnico', 'Visita Domiciliar'];
-  
-    this.chart = new Chart("PieChartAssistanceTypes", {
-      type: 'pie', // Specifies the type of chart
-  
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            data: [this.totalSocial, this.totalRecepcao, this.totalCadastroCadUnico, this.totalAtualizacaoCadUnico, this.totalVisitaDomiciliar],
-            backgroundColor: ['#90EE90', '#FFCE56', '#6895C5', '#A52A2ABF', '#A52A2A'],
-          }
-        ]
-      },
-      options: {
-        responsive: true, // Torna o gráfico responsivo
-        maintainAspectRatio: false, // Permite que o gráfico ajuste a altura automaticamente
-        plugins: {
-          datalabels: {
-            color: 'white',
-            formatter: (value) => value, // Exibe o valor no centro da fatia
-            font: {
-              weight: 'bold',
-              size: fontSizePx
-            },
-            anchor: 'center',
-            align: 'center'
-          },
-          legend: {
-            position: 'right', // Posiciona a legenda à direita
-            labels: {
+
+    const chartElement = document.getElementById('PieChartAssistanceTypes');
+
+    if (chartElement) {
+
+      // Chamar o método para verificar os dados e controlar a visibilidade
+      this.checkChartDataVisibility(chartElement);
+
+      if (!this.hasData) {
+        return;
+      }
+
+      this.chart = new Chart("PieChartAssistanceTypes", {
+        type: 'pie', // Specifies the type of chart
+    
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              data: [this.totalSocial, this.totalRecepcao, this.totalCadastroCadUnico, this.totalAtualizacaoCadUnico, this.totalVisitaDomiciliar],
+              backgroundColor: ['#90EE90', '#FFCE56', '#6895C5', '#A52A2ABF', '#A52A2A'],
+            }
+          ]
+        },
+        options: {
+          responsive: true, // Torna o gráfico responsivo
+          maintainAspectRatio: false, // Permite que o gráfico ajuste a altura automaticamente
+          plugins: {
+            datalabels: {
+              color: 'white',
+              formatter: (value) => value, // Exibe o valor no centro da fatia
               font: {
-                size: fontSizeLegendPx // Increase the font size for the legend labels
+                weight: 'bold',
+                size: fontSizePx
+              },
+              anchor: 'center',
+              align: 'center'
+            },
+            legend: {
+              position: 'right', // Posiciona a legenda à direita
+              labels: {
+                font: {
+                  size: fontSizeLegendPx // Increase the font size for the legend labels
+                }
+              }
+            },
+            tooltip: {
+              bodyFont: {
+                size: fontSizePx // Increase the font size for the tooltip
+              },
+              titleFont: {
+                size: fontSizePx // Increase the font size for the tooltip title
               }
             }
-          },
-          tooltip: {
-            bodyFont: {
-              size: fontSizePx // Increase the font size for the tooltip
-            },
-            titleFont: {
-              size: fontSizePx // Increase the font size for the tooltip title
-            }
           }
-        }
-      },
-      plugins: [datalabels] // Registra o plugin datalabels
-    });
-  }  
+        },
+        plugins: [datalabels] // Registra o plugin datalabels
+      });
+    }
+  }
+
+  checkChartDataVisibility(chartElement: HTMLElement): void {
+    // Verificar se o elemento do gráfico existe e se todos os valores são iguais a zero
+    if (chartElement && this.totalAtualizacaoCadUnico === 0 && this.totalCadastroCadUnico === 0 &&
+        this.totalRecepcao === 0 && this.totalSocial === 0 && this.totalVisitaDomiciliar === 0){
+      
+      chartElement.style.display = 'none';
+      this.hasData = false;
+    } else if (chartElement) {
+      
+      chartElement.style.display = 'block';
+      this.hasData = true;
+    }
+  }
 }

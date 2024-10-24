@@ -18,6 +18,8 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
   @Input()
   selectedUnit: Unit = {} as Unit;
 
+  hasData: boolean = true;
+
   ngOnInit(): void {
     // Adiciona o ouvinte para redimensionamento da janela
     window.addEventListener('resize', this.onResize.bind(this));
@@ -55,155 +57,188 @@ export class SpecificChartViolenceSituationTypesComponent implements OnChanges, 
     const qtdPsicologica = filterViolenceSituationsTypes.map(item => item.qtdPsicologica);
     const qtdSexual = filterViolenceSituationsTypes.map(item => item.qtdAbusoOuViolenciaSexual);
     const qtdNegligenciaContraCrianca = filterViolenceSituationsTypes.map(item => item.qtdNegligenciaContraCrianca);
-  
-    this.chart = new Chart("SpecificChartViolenceSituationsTypes", {
-      type: 'bar', //this denotes tha type of chart
 
-      data: {// values on X-Axis
-        labels: labels,
-	      datasets: [
-          {
-            label: "Física",
-            data: qtdFisica,
-            backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(173, 216, 230, 0.5)', 
-            ],
-            barPercentage: 0.8,
-            borderColor: [ // Cores das bordas das barras
-              'rgba(173, 216, 230, 0.5)'
-            ],
-            borderWidth: 1,
-            borderRadius: 10, // Adiciona bordas arredondadas
-          },
-          {
-            label: "Ato Infracional",
-            data: qtdAtoInfracional,
-            backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(255, 0, 0, 0.75)', 
-            ],
-            barPercentage: 0.8,
-            borderColor: [ // Cores das bordas das barras
-              'rgba(255, 0, 0, 1)'
-            ],
-            borderWidth: 1,
-            borderRadius: 10, // Adiciona bordas arredondadas
-          },
-          {
-            label: "Psicológica",
-            data: qtdPsicologica,
-            backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(255, 0, 255, 0.75)', 
-            ],
-            barPercentage: 0.8,
-            borderColor: [ // Cores das bordas das barras
-              'rgba(255, 0, 255, 1)'
-            ],
-            borderWidth: 1,
-            borderRadius: 10, // Adiciona bordas arredondadas
-          },
-          {
-            label: "Abuso ou Violência Sexual",
-            data: qtdSexual,
-            backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(128, 0, 128, 0.75)', 
-            ],
-            barPercentage: 0.8,
-            borderColor: [ // Cores das bordas das barras
-              'rgba(128, 0, 128, 1)'
-            ],
-            borderWidth: 1,
-            borderRadius: 10, // Adiciona bordas arredondadas
-          },
-          {
-            label: "Negligência contra Criança",
-            data: qtdNegligenciaContraCrianca,
-            backgroundColor: [ // Aqui você define os gradientes para cada barra
-              'rgba(255, 165, 0, 0.75)', 
-            ],
-            barPercentage: 0.8,
-            borderColor: [ // Cores das bordas das barras
-              'rgba(255, 165, 0, 1)'
-            ],
-            borderWidth: 1,
-            borderRadius: 10, // Adiciona bordas arredondadas
-          }
-        ]
-      },
-      options: {
-        aspectRatio: 4,
-        responsive: true,
-        maintainAspectRatio: false,
-        layout: {
-          padding: {
-            left: paddingPx, // Ajustar o preenchimento à esquerda
-            right: paddingPx, // Ajustar o preenchimento à direita
-          }
-        },
-        plugins: {
-          legend: {
-            display: true,
-            position: 'top',
-            align: 'center',
-            labels: {
-              font: {
-                size: fontSizeLegendPx, // Tamanho da fonte
-                family: "'Arial', sans-serif", // Família da fonte
-              },
-              padding: paddingPx,
-              boxWidth: fontSizeLegendPx,
-              boxPadding: fontSizeLegendPx
-            }
-          },
-          title: {
-            display: true,
-            text: 'Situações de Violência',
-            font: {
-              size: fontSizePx, // Tamanho da fonte
-              family: "'Arial', sans-serif", // Família da fonte
-              weight: 'bold', // Peso da fonte (negrito)
+    const chartElement = document.getElementById('SpecificChartViolenceSituationsTypes');
+
+    if (chartElement) {
+
+      // Chamar o método para verificar os dados e controlar a visibilidade
+      this.checkChartDataVisibility(chartElement, qtdAtoInfracional, qtdFisica, qtdPsicologica, qtdSexual, qtdNegligenciaContraCrianca);
+
+      if (!this.hasData) {
+        return; 
+      }
+    
+      this.chart = new Chart("SpecificChartViolenceSituationsTypes", {
+        type: 'bar', //this denotes tha type of chart
+
+        data: {// values on X-Axis
+          labels: labels,
+          datasets: [
+            {
+              label: "Física",
+              data: qtdFisica,
+              backgroundColor: [ // Aqui você define os gradientes para cada barra
+                'rgba(173, 216, 230, 0.5)', 
+              ],
+              barPercentage: 0.8,
+              borderColor: [ // Cores das bordas das barras
+                'rgba(173, 216, 230, 0.5)'
+              ],
+              borderWidth: 1,
+              borderRadius: 10, // Adiciona bordas arredondadas
             },
-            color: '#333333', // Cor do texto
-            align: 'start',
+            {
+              label: "Ato Infracional",
+              data: qtdAtoInfracional,
+              backgroundColor: [ // Aqui você define os gradientes para cada barra
+                'rgba(255, 0, 0, 0.75)', 
+              ],
+              barPercentage: 0.8,
+              borderColor: [ // Cores das bordas das barras
+                'rgba(255, 0, 0, 1)'
+              ],
+              borderWidth: 1,
+              borderRadius: 10, // Adiciona bordas arredondadas
+            },
+            {
+              label: "Psicológica",
+              data: qtdPsicologica,
+              backgroundColor: [ // Aqui você define os gradientes para cada barra
+                'rgba(255, 0, 255, 0.75)', 
+              ],
+              barPercentage: 0.8,
+              borderColor: [ // Cores das bordas das barras
+                'rgba(255, 0, 255, 1)'
+              ],
+              borderWidth: 1,
+              borderRadius: 10, // Adiciona bordas arredondadas
+            },
+            {
+              label: "Abuso ou Violência Sexual",
+              data: qtdSexual,
+              backgroundColor: [ // Aqui você define os gradientes para cada barra
+                'rgba(128, 0, 128, 0.75)', 
+              ],
+              barPercentage: 0.8,
+              borderColor: [ // Cores das bordas das barras
+                'rgba(128, 0, 128, 1)'
+              ],
+              borderWidth: 1,
+              borderRadius: 10, // Adiciona bordas arredondadas
+            },
+            {
+              label: "Negligência contra Criança",
+              data: qtdNegligenciaContraCrianca,
+              backgroundColor: [ // Aqui você define os gradientes para cada barra
+                'rgba(255, 165, 0, 0.75)', 
+              ],
+              barPercentage: 0.8,
+              borderColor: [ // Cores das bordas das barras
+                'rgba(255, 165, 0, 1)'
+              ],
+              borderWidth: 1,
+              borderRadius: 10, // Adiciona bordas arredondadas
+            }
+          ]
+        },
+        options: {
+          aspectRatio: 4,
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: {
             padding: {
-              top: 0,
-              bottom: paddingPx / 2
+              left: paddingPx, // Ajustar o preenchimento à esquerda
+              right: paddingPx, // Ajustar o preenchimento à direita
             }
           },
-          tooltip: {
-            bodyFont: {
-              size: fontSizePx // Increase the font size for the tooltip
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              align: 'center',
+              labels: {
+                font: {
+                  size: fontSizeLegendPx, // Tamanho da fonte
+                  family: "'Arial', sans-serif", // Família da fonte
+                },
+                padding: paddingPx,
+                boxWidth: fontSizeLegendPx,
+                boxPadding: fontSizeLegendPx
+              }
             },
-            titleFont: {
-              size: fontSizePx // Increase the font size for the tooltip title
-            }
-          }
-        },
-        scales: {
-          x: {
-            ticks: {
+            title: {
+              display: true,
+              text: 'Situações de Violência',
               font: {
-                size: fontSizeLegendPx, // Aumenta o tamanho da fonte das categorias do eixo x
-                family: "'Arial', sans-serif",
+                size: fontSizePx, // Tamanho da fonte
+                family: "'Arial', sans-serif", // Família da fonte
+                weight: 'bold', // Peso da fonte (negrito)
               },
+              color: '#333333', // Cor do texto
+              align: 'start',
+              padding: {
+                top: 0,
+                bottom: paddingPx / 2
+              }
             },
-            grid: {
-              display: false // Desabilita a exibição das linhas da grade do eixo x
+            tooltip: {
+              bodyFont: {
+                size: fontSizePx // Increase the font size for the tooltip
+              },
+              titleFont: {
+                size: fontSizePx // Increase the font size for the tooltip title
+              }
             }
           },
-          y: {
-            ticks: {
-              font: {
-                size: fontSizeLegendPx, // Aumenta o tamanho da fonte dos ticks do eixo y
-                family: "'Arial', sans-serif",
+          scales: {
+            x: {
+              ticks: {
+                font: {
+                  size: fontSizeLegendPx, // Aumenta o tamanho da fonte das categorias do eixo x
+                  family: "'Arial', sans-serif",
+                },
               },
-              stepSize: 150
+              grid: {
+                display: false // Desabilita a exibição das linhas da grade do eixo x
+              }
             },
-            grid: {
-              color: 'rgba(0, 0, 0, 0.1)', // Define a cor das linhas da grade (opcional)
+            y: {
+              ticks: {
+                font: {
+                  size: fontSizeLegendPx, // Aumenta o tamanho da fonte dos ticks do eixo y
+                  family: "'Arial', sans-serif",
+                },
+                stepSize: 150
+              },
+              grid: {
+                color: 'rgba(0, 0, 0, 0.1)', // Define a cor das linhas da grade (opcional)
+              }
             }
           }
         }
-      }
-    });
+      });
+    }
+  }
+
+  checkChartDataVisibility(chartElement: HTMLElement, qtdAtoInfracional: number[],
+    qtdFisica: number[], qtdPsicologica: number[], qtdSexual: number[],
+    qtdNegligenciaContraCrianca: number[]): void {
+    
+    // Verificar se o elemento do gráfico existe e se todos os valores são iguais a zero
+    if (chartElement && 
+        qtdAtoInfracional.every(value => value === 0) && 
+        qtdFisica.every(value => value === 0) && 
+        qtdPsicologica.every(value => value === 0) && 
+        qtdSexual.every(value => value === 0) && 
+        qtdNegligenciaContraCrianca.every(value => value === 0)) {
+      
+      chartElement.style.display = 'none';
+      this.hasData = false;
+    } else if (chartElement) {
+      
+      chartElement.style.display = 'block';
+      this.hasData = true;
+    }
   }
 }

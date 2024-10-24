@@ -1,3 +1,6 @@
 <div class="specific-chart">
+    <div *ngIf="!hasData" class="message-has-data">
+        <p>Não há dados disponíveis para exibir no gráfico.</p>
+    </div>
     <canvas id="SpecificChartViolenceSituationsTypes" class="chart">{{ chart }}</canvas>
 </div>

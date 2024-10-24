@@ -52,3 +52,22 @@ body{
     width: 100%;
     margin-top: 2vh;
 }
+
+.message-has-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 3vh;
+    color: #9098A9;
+    padding-left: 1vh;
+    padding-right: 1vh;
+
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    margin-right: 1vw;
+    height: 100%;
+}
