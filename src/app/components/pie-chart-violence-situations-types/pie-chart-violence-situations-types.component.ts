@@ -51,9 +51,6 @@ export class PieChartViolenceSituationsTypesComponent implements OnChanges, OnIn
 
     const filterViolenceSituationsTypes = this.violenceSituationsTypes.filter(item => item.unit.id === this.selectedUnit.id);
 
-    this.totalOpenViolenceSituations = filterViolenceSituationsTypes[0].qtdOpen;
-    this.totalClosedViolenceSituations = filterViolenceSituationsTypes[0].qtdClosed;
-
     const fontSizePx = window.innerHeight * (3 / 100); // Converte para pixels
     const fontSizeLegendPx = window.innerHeight * (3.5 / 100); // Converte para pixels
   
@@ -69,6 +66,9 @@ export class PieChartViolenceSituationsTypesComponent implements OnChanges, OnIn
       if (!this.hasData) {
         return;
       }
+
+      this.totalOpenViolenceSituations = filterViolenceSituationsTypes[0].qtdOpen;
+      this.totalClosedViolenceSituations = filterViolenceSituationsTypes[0].qtdClosed;
 
       this.chart = new Chart("PieChartViolenceSituationsTypes", {
         type: 'pie', // Specifies the type of chart
@@ -121,7 +121,7 @@ export class PieChartViolenceSituationsTypesComponent implements OnChanges, OnIn
 
   checkChartDataVisibility(chartElement: HTMLElement): void {
     // Verificar se o elemento do gráfico existe e se todos os valores são iguais a zero
-    if (chartElement && this.totalClosedViolenceSituations === 0 && this.totalOpenViolenceSituations === 0){
+    if (chartElement && this.totalClosedViolenceSituations === 0 && this.totalOpenViolenceSituations === 0) {
       
       chartElement.style.display = 'none';
       this.hasData = false;

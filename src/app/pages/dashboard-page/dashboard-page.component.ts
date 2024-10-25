@@ -142,7 +142,13 @@ export class DashboardPageComponent {
   }
 
   loadYears() {
-    this.years = ["Geral", "2024", "2023", "2022", "2021", "2020"];
+    const currentYear = new Date().getFullYear();
+    this.years = ["Geral"];
+    
+    for (let i = 0; i < 5; i++) { 
+      this.years.push((currentYear - i).toString());
+    }
+    
     this.selectedYear = this.years[0];
   }
 
