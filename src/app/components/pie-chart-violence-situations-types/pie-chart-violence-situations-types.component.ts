@@ -61,14 +61,11 @@ export class PieChartViolenceSituationsTypesComponent implements OnChanges, OnIn
     if (chartElement) {
 
       // Chamar o método para verificar os dados e controlar a visibilidade
-      this.checkChartDataVisibility(chartElement);
+      this.checkChartDataVisibility(chartElement, filterViolenceSituationsTypes);
 
       if (!this.hasData) {
         return;
       }
-
-      this.totalOpenViolenceSituations = filterViolenceSituationsTypes[0].qtdOpen;
-      this.totalClosedViolenceSituations = filterViolenceSituationsTypes[0].qtdClosed;
 
       this.chart = new Chart("PieChartViolenceSituationsTypes", {
         type: 'pie', // Specifies the type of chart
@@ -119,16 +116,20 @@ export class PieChartViolenceSituationsTypesComponent implements OnChanges, OnIn
     }
   }
 
-  checkChartDataVisibility(chartElement: HTMLElement): void {
+  checkChartDataVisibility(chartElement: HTMLElement, filterViolenceSituationsTypes: ViolenceSituationsTypes[]): void {
+
     // Verificar se o elemento do gráfico existe e se todos os valores são iguais a zero
-    if (chartElement && this.totalClosedViolenceSituations === 0 && this.totalOpenViolenceSituations === 0) {
+    if (chartElement && filterViolenceSituationsTypes.length > 0 && (filterViolenceSituationsTypes[0].qtdOpen > 0 || filterViolenceSituationsTypes[0].qtdClosed > 0)) {
       
-      chartElement.style.display = 'none';
-      this.hasData = false;
-    } else if (chartElement) {
+      this.totalOpenViolenceSituations = filterViolenceSituationsTypes[0].qtdOpen;
+      this.totalClosedViolenceSituations = filterViolenceSituationsTypes[0].qtdClosed;
       
       chartElement.style.display = 'block';
       this.hasData = true;
+    } else if (chartElement) {
+
+      chartElement.style.display = 'none';
+      this.hasData = false;
     }
   }
 }

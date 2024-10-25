@@ -1,7 +1,19 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3vh;
+}
+
 .title{
     font-family: 'Arial', sans-serif;
     font-size: 2vh;
     font-weight: bold;
     text-align: start;
     margin-top: 2vh;
+}
+
+.images img {
+    height: 4vh;
+    margin-right: 1vh;
 }
