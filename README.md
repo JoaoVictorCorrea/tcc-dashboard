@@ -1,27 +1,53 @@
 # TccDashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.13.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Sobre este projeto
 
-## Code scaffolding
+Este projeto foi desenvolvido durante o trabalho de conclusão de curso dos alunos Andre Franco e João Victor Araujo Corrêa. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Este código refere-se ao frontend da solução decorrente deste TCC, que fornece um dashboard com dados gerenciais dos serviços de assistência social da Estância Turística de Salto, fazendo com que
+os técnicos e gestores possam tomar decisões baseadas em dados concretos.
 
-## Build
+## Instalações necessárias
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Node - para instalar o Angular.
 
-## Running unit tests
+## Funcionalidades
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Visualizar dashboard geral (apresenta a quantidade de tipos de atendimento e situações de violência de todas as unidades sem um período de tempo definido).
+* Visualizar dashboard específico (apresenta a quantidade de de tipos de atendimento e situações de violência de uma unidade no período de tempo escolhido pelo usuário).
+* Descriptografa os dados que são recebidos pela API.
 
-## Running end-to-end tests
+## Pré-requisitos
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Para executar este projeto no modo de desenvolvimento, você precisa de um ambiente básico para executar uma aplicação Angular.
 
-## Further help
+### Instalando
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+`$ git clone https://github.com/JoaoVictorCorrea/tcc-dashboard.git`
+
+`$ cd tcc-dashboard`
+
+### Instalando dependências
+
+`$ npm install`
+
+### Executando
+
+Com todas as dependências instaladas e com o ambiente devidamente configurado, você pode executar a aplicação:
+
+`$ cd tcc-dashboard`
+
+`$ ng build`
+
+``$ ng serve``
+
+Após isso, navegue para 'http://localhost:4200/'
+
+## Implementado com
+
+* Angular
+* TypeScript
+* ChartJs
+* CryptoJs
