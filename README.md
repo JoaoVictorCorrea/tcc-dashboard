@@ -11,7 +11,7 @@ os técnicos e gestores possam tomar decisões baseadas em dados concretos.
 
 ## Instalações necessárias
 
-Node - para instalar o Angular.
+[Node](https://nodejs.org/en/download) - para instalar o Angular.
 
 ## Funcionalidades
 
