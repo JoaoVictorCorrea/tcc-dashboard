@@ -1,6 +1,6 @@
 # TccDashboard
 
-
+![alt text](imagem-interface.jpeg)
 
 ## Sobre este projeto
 
